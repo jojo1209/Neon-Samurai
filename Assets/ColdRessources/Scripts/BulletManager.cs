@@ -1,37 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
-public class BulletManager : MonoBehaviour
-{
-	[Header("fini")]
-	[Tooltip("the player GameObject")]
-	public GameObject player;
+public class BulletManager : MonoBehaviour {
+	public static BulletManager SharedInstance;
+	public GameObjectPool[] bulletPool;
 
-	//[Tooltip("The groups of a set of bullets")]
+	private void Awake() { if (SharedInstance == null) SharedInstance = this; }
 
+	public List<GameObject> GetBullets(int bulletType, int number) { return bulletPool[bulletType].GetGameObject(number); }
 
-	 private List<GrBullet> bulletGroups;
+	public void ReturnBullet(GameObject bullet, int bulletType) { bulletPool[bulletType].ReturnGameObject(bullet); }
 
-
-	public void CreateBulletGroup(GameObject bulletGroup , GameObject enemy) // qu'elle attaque par qu'elle ennemie  
-    {
-		GrBullet grp = Instantiate(bulletGroup, enemy.transform).GetComponent<GrBullet>();
-		grp.parent = enemy;
-
-		//grp.transform.position = enemy.transform.position;
-
-		grp.transform.LookAt(player.transform.position);
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-		for (int i = 0; i < bulletGroups.Count; i++)
-		{
-			bulletGroups[i].Move();
-		}
-	}
-
-	
+	public void ReturnBullets(List<GameObject> bullets, int bulletType) { bulletPool[bulletType].ReturnGameObjects(bullets); }
 }
