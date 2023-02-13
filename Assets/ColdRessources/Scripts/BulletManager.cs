@@ -13,7 +13,6 @@ public class BulletManager : MonoBehaviour {
 			SharedInstance = this;
 		foreach (BulletType bt in bulletTypes)
 			bulletPools[bt.bulletType] = bt.bulletPool;
-		Debug.Log(bulletPools);
 	}
 
 	public GameObject GetBullet(string bulletType) {

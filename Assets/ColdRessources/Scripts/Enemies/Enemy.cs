@@ -23,8 +23,12 @@ public class Enemy : MonoBehaviour
 			// prepare shoot
 			var cannon = cannons[i];
 			// set the rotation
-			if (targetPlayer) bullet.transform.LookAt(Player.SharedInstance.transform);
-			else bullet.transform.rotation = cannon.transform.rotation;
+			if (targetPlayer)
+				bullet.transform.LookAt(Player.SharedInstance.transform);
+			else {
+				bullet.transform.rotation = cannon.transform.rotation;
+				bullet.transform.Rotate(new Vector3(90, 0, 0));
+			}
 			// set the position
 			bullet.transform.position = cannon.transform.position;
 			bullet.speedMultiplier = bulletSpeedMultiplier;

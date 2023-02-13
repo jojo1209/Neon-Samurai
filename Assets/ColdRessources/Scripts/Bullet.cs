@@ -7,15 +7,24 @@ public class Bullet : MonoBehaviour {
 	[Tooltip("The speed of the bullet")]
 	[SerializeField] private float baseSpeed = 10;
 
+	private float counter = 0;
+
 	private float speed;
 	[NonSerialized] public float speedMultiplier = 1;
 
 	private void OnEnable() {
+		counter = 0;
 		speed = baseSpeed * speedMultiplier;
 	}
 
 	private void Update() {
-		transform.position += transform.forward * speed;
+		counter += Time.deltaTime;
+		if (counter > 3) {
+			BulletManager.SharedInstance.ReturnBullet(gameObject, bulletType);
+			gameObject.SetActive(false);
+			return;
+		}
+		transform.position += (transform.forward * speed).normalized;
 	}
 
 	private void OnTriggerEnter(Collider other) {
