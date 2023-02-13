@@ -1,120 +1,88 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
+    public GameObject[] PrefabMap;
 
-    public Map[] maps;
+    private List<GameObject> maps;
 
-    int player = 0;
+
+    
+    public float vitesse;
 
     int center=0;
     int up = 0;
     int down = 0;
-    int left = 0;
-    int right = 0;
 
-    int upLeft = 0;
-    int downLeft = 0;
-    int downRight = 0;
-    int upRight = 0;
+    int mapY = 100;// taille de la map de haut en bas 
 
 
+    private void Awake()
+    {
+        maps=new List<GameObject>();
+        if (PrefabMap.Length > 0)
+        {
+
+                for (int i = 0; i < 3; i++)
+                {
+
+                    int n =Random.Range(0, PrefabMap.Length);
+                    GameObject t = Instantiate(PrefabMap[n]);
+                    maps.Add(t);
+                }
+        }
+        else 
+        {
+            Debug.Log("pas de prefab de map");
+        }
+    }
 
     void Start()
     {
         Debug.Log(maps[0].name);
         if (maps != null) {
-            maps[0].transform.position = new Vector3(0, 0, 0); center = 0;
+            for(int i=0;i<3;i++)
+            {
+                maps[i].transform.position = new Vector3(0, i* mapY, 0);
+                maps[i].transform.rotation = Quaternion.Euler(90, 0, 0);
+            }
+            down = 0;
+            center = 1;
+            up = 2;
 
-            maps[1].transform.position = new Vector3(100, 0, 0); up = 1;
-            maps[2].transform.position = new Vector3(-100, 0, 0); down = 2;
-            maps[3].transform.position = new Vector3(0, 0, 100); right = 3;
-            maps[4].transform.position = new Vector3(0, 0, -100); left = 4;
-
-            maps[5].transform.position = new Vector3(100, 0, 100); upRight = 5;
-            maps[6].transform.position = new Vector3(-100, 0, 100); downRight = 6;
-            maps[7].transform.position = new Vector3(100, 0, -100); upLeft = 7;
-            maps[8].transform.position = new Vector3(-100, 0, -100); downLeft = 8;
-
-
-            Debug.Log("deplacement de la map Map");
+            //Debug.Log("deplacement de la map Map");
         }
         else { Debug.Log("pas de liste de Map"); }
     }
 
 
-    private int wherePlayer()
+
+
+    public void AvanceMap() 
     {
-        for(int i = 0; i < maps.Length; i++)
-        { if (maps[i].asPlayer) {  return i; } }
+        foreach (var map in maps) 
+        {
+            map.transform.position+= Vector3.down* vitesse;
+        }
 
-        Debug.Log("player disparut ");
-
-        return -1;
-
-    }
-
-
-    public void centerMap() 
-    {
-        player= wherePlayer();
-        if (player == -1) { Debug.Log("erreu player"); return; }
-        if (player == center) return;
+        if (maps[down].transform.position.y < -mapY) 
+        {
+            maps[down].transform.position = new Vector3(0, mapY, 0) + maps[up].transform.position;
+            int p = down;
+            down = center;
+            center = up;
+            up = p;
+        }
         
-
-        if(left== player)
-        {
-            maps[right].transform.position = maps[left].transform.position + new Vector3(0, 0, -100);
-            maps[upRight].transform.position = maps[left].transform.position + new Vector3(100, 0, -100);
-            maps[downRight].transform.position = maps[left].transform.position + new Vector3(-100, 0, -100);
-
-            int p = right;
-            right = center;
-            center = player;
-            left = p;
-
-            p=upRight;
-            upRight = up;
-            up = upLeft;
-            upLeft = p;
-
-            p = downRight;
-            downRight = down;
-            down = downLeft;
-            downLeft = p;
-
-        }
-        else
-        {
-            maps[left].transform.position = maps[right].transform.position + new Vector3(0, 0, 100);
-            maps[upLeft].transform.position = maps[right].transform.position + new Vector3(100, 0, 100);
-            maps[downLeft].transform.position = maps[right].transform.position + new Vector3(-100, 0, 100);
-
-            int p = left;
-
-            left = center;
-            center = player;
-            right = p;
-
-            p = upLeft;
-            upLeft = up;
-            up = upRight;
-             upRight= p;
-
-            p = downLeft;
-            downLeft = down;
-            down = downRight;
-            downRight = p;
-        }
-
 
     }
 
     
     private void Update()
     {
-        centerMap();
+        AvanceMap();
     }
 }
