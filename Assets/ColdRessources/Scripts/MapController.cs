@@ -17,7 +17,7 @@ public class MapController : MonoBehaviour
     int up = 0;
     int down = 0;
 
-    int mapY = 100;// taille de la map de haut en bas 
+    public int mapY = 100;// taille de la map de haut en bas 
 
 
     private void Awake()
@@ -65,7 +65,7 @@ public class MapController : MonoBehaviour
     {
         foreach (var map in maps) 
         {
-            map.transform.position+= Vector3.down* vitesse;
+            map.transform.position+= Vector3.down* vitesse*Time.deltaTime;
         }
 
         if (maps[down].transform.position.y < -mapY) 
@@ -77,7 +77,7 @@ public class MapController : MonoBehaviour
             up = p;
         }
         
-
+        
     }
 
     
