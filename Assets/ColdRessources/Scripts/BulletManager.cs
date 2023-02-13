@@ -12,4 +12,6 @@ public class BulletManager : MonoBehaviour {
 	public void ReturnBullet(GameObject bullet, int bulletType) { bulletPool[bulletType].ReturnGameObject(bullet); }
 
 	public void ReturnBullets(List<GameObject> bullets, int bulletType) { bulletPool[bulletType].ReturnGameObjects(bullets); }
+
+	
 }
