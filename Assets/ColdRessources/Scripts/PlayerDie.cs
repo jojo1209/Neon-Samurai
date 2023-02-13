@@ -12,13 +12,12 @@ public class PlayerDie : MonoBehaviour
 
     void Update()
     {
-        JoueurMort();
+        Death();
     }
 
-    public void JoueurMort()
+    public void Death()
     {
         affichageMort.SetActive(true);
         Time.timeScale = 0;
-
     }
 }
