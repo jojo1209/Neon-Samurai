@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Bullet : MonoBehaviour {
 	[Tooltip("The bullet type")]
-	[SerializeField] private string bulletType;
+	[SerializeField] private string bulletType = "lazer";
 	[Tooltip("The speed of the bullet")]
-	[SerializeField] private float baseSpeed;
+	[SerializeField] private float baseSpeed = 10;
 
 	private float speed;
-	private float speedMultiplier;
+	[NonSerialized] public float speedMultiplier = 1;
 
 	private void OnEnable() {
 		speed = baseSpeed * speedMultiplier;

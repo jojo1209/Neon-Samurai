@@ -187,7 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4099473454794521755}
-  - component: {fileID: 6524185189198132337}
+  - component: {fileID: 7872269702462183008}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -212,7 +212,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6524185189198132337
+--- !u!114 &7872269702462183008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,11 +221,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4876651141590996697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e1ff22f1d772f499a6b351ea7b024e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d2ef87fcc3e0b649a3ad5a2140acb4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 1
+  cooldown: 3
+  paterns:
+  - bulletTypes:
+    - lazer
+    - lazer
   cannons:
   - {fileID: 2193805761884969226}
   - {fileID: 2193805762011352173}
   targetPlayer: 0
+  value: 2
+  bulletSpeedMultiplier: 1
