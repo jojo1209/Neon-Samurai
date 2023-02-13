@@ -224,6 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e1ff22f1d772f499a6b351ea7b024e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0
-  cannons: []
+  cooldown: 1
+  cannons:
+  - {fileID: 2193805761884969226}
+  - {fileID: 2193805762011352173}
   targetPlayer: 0

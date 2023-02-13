@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 			var cannon = cannons[i];
 			// if the bullet target the player, it takes the player
 			if (targetPlayer)
-				bullet.transform.LookAt(PlayerDeath.SharedInstance.transform);
+				bullet.transform.LookAt(Player.SharedInstance.transform);
 			else
 				bullet.transform.rotation = cannon.transform.rotation;
 			
