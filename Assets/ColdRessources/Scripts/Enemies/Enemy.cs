@@ -58,10 +58,13 @@ public class Enemy : MonoBehaviour
 				cannon.transform.LookAt(Player.SharedInstance.transform, Vector3.down);
 				cannon.transform.Rotate(90, 0, 0);
 			}
+
+		
 	}
 
 	public void Die() {
 		// todo increment score though
 		// Destroy(gameObject);
+		Debug.Log("mort ennemie");
 	}
 }
