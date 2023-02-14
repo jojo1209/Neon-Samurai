@@ -5,13 +5,13 @@ public class Bullet : MonoBehaviour {
 	[Tooltip("The bullet type")]
 	[SerializeField] private string bulletType = "lazer";
 	[Tooltip("The speed of the bullet")]
-	[SerializeField] private float baseSpeed = 10;
+	[SerializeField] private float baseSpeed = 20;
 
 	private float counter = 0;
 
 	private float speed;
-	public Vector3 direction;
 	[NonSerialized] public float speedMultiplier = 1;
+	internal Vector3 direction;
 
 	private void OnEnable() {
 		counter = 0;
@@ -25,7 +25,8 @@ public class Bullet : MonoBehaviour {
 			gameObject.SetActive(false);
 			return;
 		}
-		transform.position += (direction * speed).normalized;
+		transform.position += transform.forward * speed * Time.deltaTime;
+		Debug.DrawRay(this.transform.position,this.transform.forward, Color.blue);
 	}
 
 	private void OnTriggerEnter(Collider other) {

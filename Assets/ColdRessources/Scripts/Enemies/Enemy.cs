@@ -13,20 +13,32 @@ public class Enemy : MonoBehaviour
 	private float cdCounter = 0;
 	private int paternIndex = 0;
 
+	private void Start() {
+		if (!targetPlayer) {
+			foreach (GameObject cannon in cannons) {
+				cannon.transform.Rotate(90, 0, 0);
+			}
+		}
+	}
+
 	public void Shoot() {
-		// get bullets
-		for (int i = 0; i < cannons.Count; i++)
-		{
+		for (int i = 0; i < cannons.Count; i++) {
+			// get bullets
 			string bulletType = paterns[paternIndex].bulletTypes[i];
 			Bullet bullet = BulletManager.SharedInstance.GetBullet(bulletType).GetComponent<Bullet>();
 
 			// prepare shoot
 			var cannon = cannons[i];
-			// set the rotation
-			bullet.transform.rotation = cannon.transform.rotation;
-			bullet.direction = cannon.transform.forward - new Vector3(0, 90, 0);
 			// set the position
 			bullet.transform.position = cannon.transform.position;
+			// set the rotation
+			if (!targetPlayer) {
+				var cannonRot = cannon.transform.rotation;
+				bullet.transform.rotation = Quaternion.Euler(cannonRot.x + 90, cannonRot.y, 0);
+			}
+			else
+				bullet.transform.LookAt(Player.SharedInstance.transform);
+			// bullet.direction = cannon.transform.forward;
 			bullet.speedMultiplier = bulletSpeedMultiplier;
 			bullet.gameObject.SetActive(true);
 		}
@@ -43,9 +55,8 @@ public class Enemy : MonoBehaviour
 		}
 		if (targetPlayer)
 			foreach (GameObject cannon in cannons) {
-				cannon.transform.LookAt(Player.SharedInstance.transform);
-				var rot = cannon.transform.rotation;
-				cannon.transform.rotation = Quaternion.Euler(rot.x, rot.y, 0);
+				cannon.transform.LookAt(Player.SharedInstance.transform, Vector3.down);
+				cannon.transform.Rotate(90, 0, 0);
 			}
 	}
 
