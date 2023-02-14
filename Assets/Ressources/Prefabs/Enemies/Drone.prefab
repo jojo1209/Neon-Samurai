@@ -338,4 +338,4 @@ MonoBehaviour:
   - {fileID: 3711455841306614777}
   targetPlayer: 0
   value: 2
-  bulletSpeedMultiplier: 1
+  bulletSpeedMultiplier: 0.1

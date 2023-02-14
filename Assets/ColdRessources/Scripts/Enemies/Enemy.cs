@@ -23,12 +23,8 @@ public class Enemy : MonoBehaviour
 			// prepare shoot
 			var cannon = cannons[i];
 			// set the rotation
-			if (targetPlayer)
-				bullet.transform.LookAt(Player.SharedInstance.transform);
-			else {
-				bullet.transform.rotation = cannon.transform.rotation;
-				bullet.transform.Rotate(new Vector3(90, 0, 0));
-			}
+			bullet.transform.rotation = cannon.transform.rotation;
+			bullet.direction = cannon.transform.forward - new Vector3(0, 90, 0);
 			// set the position
 			bullet.transform.position = cannon.transform.position;
 			bullet.speedMultiplier = bulletSpeedMultiplier;
@@ -45,6 +41,12 @@ public class Enemy : MonoBehaviour
 			Shoot();
 			cdCounter %= cooldown;
 		}
+		if (targetPlayer)
+			foreach (GameObject cannon in cannons) {
+				cannon.transform.LookAt(Player.SharedInstance.transform);
+				var rot = cannon.transform.rotation;
+				cannon.transform.rotation = Quaternion.Euler(rot.x, rot.y, 0);
+			}
 	}
 
 	public void Die() {

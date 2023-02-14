@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour {
 	private float counter = 0;
 
 	private float speed;
+	public Vector3 direction;
 	[NonSerialized] public float speedMultiplier = 1;
 
 	private void OnEnable() {
@@ -24,10 +25,11 @@ public class Bullet : MonoBehaviour {
 			gameObject.SetActive(false);
 			return;
 		}
-		transform.position += (transform.forward * speed).normalized;
+		transform.position += (direction * speed).normalized;
 	}
 
 	private void OnTriggerEnter(Collider other) {
+		Debug.Log(other.name);
 		if (other.TryGetComponent<PlayerDeath>(out PlayerDeath player)) {
 			player.Die();
 			BulletManager.SharedInstance.ReturnBullet(gameObject, bulletType);
