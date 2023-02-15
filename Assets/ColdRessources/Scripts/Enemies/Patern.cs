@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-
 [System.Serializable]
-public class Patern
-{
-    public List<string> bulletTypes;
+public class Patern {
+	public System.Collections.Generic.List<string> bulletTypes;
 }

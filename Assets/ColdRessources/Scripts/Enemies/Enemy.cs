@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
-{
+public class Enemy : MonoBehaviour {
 	[SerializeField] private float cooldown = 0;
 	[SerializeField] private List<Patern> paterns;
 	[SerializeField] private List<GameObject> cannons;
@@ -36,8 +35,9 @@ public class Enemy : MonoBehaviour
 				var cannonRot = cannon.transform.rotation;
 				bullet.transform.rotation = Quaternion.Euler(cannonRot.x + 90, cannonRot.y, 0);
 			}
-			else
+			else {
 				bullet.transform.LookAt(Player.SharedInstance.transform);
+			}
 			// bullet.direction = cannon.transform.forward;
 			bullet.speedMultiplier = bulletSpeedMultiplier;
 			bullet.gameObject.SetActive(true);
@@ -48,23 +48,19 @@ public class Enemy : MonoBehaviour
 	}
 
 	private void Update() {
-		cdCounter += Time.deltaTime;
-		if (cdCounter >= cooldown) {
-			Shoot();
-			cdCounter %= cooldown;
-		}
 		if (targetPlayer)
 			foreach (GameObject cannon in cannons) {
 				cannon.transform.LookAt(Player.SharedInstance.transform, Vector3.down);
 				cannon.transform.Rotate(90, 0, 0);
 			}
-
-		
+		cdCounter += Time.deltaTime;
+		if (cdCounter >= cooldown) {
+			Shoot();
+			cdCounter %= cooldown;
+		}
 	}
-
 	public void Die() {
 		// todo increment score though
-		// Destroy(gameObject);
 		Debug.Log("mort ennemie");
 	}
 }

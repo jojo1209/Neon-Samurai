@@ -11,7 +11,6 @@ public class Bullet : MonoBehaviour {
 
 	private float speed;
 	[NonSerialized] public float speedMultiplier = 1;
-	internal Vector3 direction;
 
 	private void OnEnable() {
 		counter = 0;
