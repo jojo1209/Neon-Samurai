@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerDeath : MonoBehaviour {
-	//IL FAUT METTRE LE GAMEOBJECT "MortPrefab" DANS LE CANVAS POUR QUE CA FONCTIONNE
-	public GameObject affichageMort;
+	public CanvasRenderer deathDisplay;
 
 	public void Die() {
-		affichageMort.SetActive(true);
+		deathDisplay.gameObject.SetActive(true);
 		Time.timeScale = 0;
 	}
 }

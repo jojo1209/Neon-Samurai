@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ColdRessources/Scenes/BulletsTestScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/ColdRessources/Scenes/MainMenu.unity
+    guid: 795fea51a74708d48950b3475b9e07b5
+  - enabled: 1
+    path: Assets/ColdRessources/Scenes/Tests/EnemiesTestScene.unity
+    guid: 958dc967c8bb5eb4393779c3435f3c15
   m_configObjects: {}

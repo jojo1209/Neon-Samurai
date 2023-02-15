@@ -29,7 +29,6 @@ public class Bullet : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		Debug.Log(other.name);
 		if (other.TryGetComponent<PlayerDeath>(out PlayerDeath player)) {
 			player.Die();
 			BulletManager.SharedInstance.ReturnBullet(gameObject, bulletType);

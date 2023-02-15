@@ -60,7 +60,12 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 	public void Die() {
-		// todo increment score though
+		// Update score
+		float score = PlayerPrefs.GetFloat("Score");
+		PlayerPrefs.SetFloat("Score", score + value);
+
+		// Death
 		Debug.Log("mort ennemie");
+		Destroy(gameObject);
 	}
 }
