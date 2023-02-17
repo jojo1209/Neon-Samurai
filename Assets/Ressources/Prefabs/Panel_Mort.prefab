@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6498633046119178563}
   - component: {fileID: 1891255646164701552}
   - component: {fileID: 5571068573541638089}
-  - component: {fileID: 4433634265344688727}
   m_Layer: 5
   m_Name: ButtonMainMenu
   m_TagString: Untagged
@@ -123,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4433634265344688727}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DeathPanel, Assembly-CSharp
         m_MethodName: ToMainMenu
         m_Mode: 1
@@ -135,18 +134,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4433634265344688727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2276886054829106416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10295a7af981ee14e83b7f107c182298, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3281333318806924658
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,6 +145,7 @@ GameObject:
   - component: {fileID: 3281333318806924659}
   - component: {fileID: 3281333318806924657}
   - component: {fileID: 3281333318806924656}
+  - component: {fileID: 5237931225276649706}
   m_Layer: 5
   m_Name: Panel_Mort
   m_TagString: Untagged
@@ -226,6 +214,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5237931225276649706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3281333318806924658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10295a7af981ee14e83b7f107c182298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  replayButton: {fileID: 4959205144427362923}
+  respawnButton: {fileID: 0}
+  quitButton: {fileID: 5571068573541638089}
 --- !u!1 &3281333319138428043
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +511,6 @@ GameObject:
   - component: {fileID: 4171660098357722834}
   - component: {fileID: 6141252072342574513}
   - component: {fileID: 4959205144427362923}
-  - component: {fileID: 7770414287218357462}
   m_Layer: 5
   m_Name: ButtonReplay
   m_TagString: Untagged
@@ -619,7 +621,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7770414287218357462}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DeathPanel, Assembly-CSharp
         m_MethodName: Replay
         m_Mode: 1
@@ -631,18 +633,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7770414287218357462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4375486712822520875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10295a7af981ee14e83b7f107c182298, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5494361532004602200
 GameObject:
   m_ObjectHideFlags: 0
