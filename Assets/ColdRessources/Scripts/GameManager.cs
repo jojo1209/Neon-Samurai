@@ -3,7 +3,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 	public PlayerMouvements player;
 
-	void FixedUpdate() {
+	private void Start() {
+		Time.timeScale = 1;
+	}
+
+	void Update() {
 		if (Input.touchCount > 0) {
 			Touch touch = Input.GetTouch(0);
 			if (touch.phase == TouchPhase.Moved) {
