@@ -3,7 +3,17 @@ guid: e189b966266d88c41868dbded3f6d451
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Drone2
+    second: {fileID: 2100000, guid: 41d24933b2489a74090f7e955d8b43c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_EmissiveTurquoise
+    second: {fileID: 2100000, guid: 28dccc66cc511bf40aad9d21c1859be4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
