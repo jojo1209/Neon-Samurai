@@ -17,6 +17,8 @@ public class MapController : MonoBehaviour
     int up = 0;
     int down = 0;
 
+    int n=5;
+
     public int mapY = 100;// taille de la map de haut en bas 
 
 
@@ -25,12 +27,11 @@ public class MapController : MonoBehaviour
         maps=new List<GameObject>();
         if (PrefabMap.Length > 0)
         {
+            n = PrefabMap.Length;
 
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < PrefabMap.Length; i++)
                 {
-
-                    int n =Random.Range(0, PrefabMap.Length);
-                    GameObject t = Instantiate(PrefabMap[n]);
+                    GameObject t = Instantiate(PrefabMap[i]);
                     maps.Add(t);
                 }
         }
@@ -44,14 +45,14 @@ public class MapController : MonoBehaviour
     {
         Debug.Log(maps[0].name);
         if (maps != null) {
-            for(int i=0;i<3;i++)
+            for(int i=0;i<n;i++)
             {
                 maps[i].transform.position = new Vector3(0, i* mapY, 0);
-                maps[i].transform.rotation = Quaternion.Euler(90, 0, 0);
+                //maps[i].transform.rotation = Quaternion.Euler(-90, 0, 0);
             }
+
             down = 0;
-            center = 1;
-            up = 2;
+            up = n-1;
 
             //Debug.Log("deplacement de la map Map");
         }
@@ -71,9 +72,12 @@ public class MapController : MonoBehaviour
         if (maps[down].transform.position.y < -mapY) 
         {
             maps[down].transform.position = new Vector3(0, mapY, 0) + maps[up].transform.position;
+            
             int p = down;
-            down = center;
-            center = up;
+
+            down += 1;
+            if (down==n) 
+            { down = 0; }
             up = p;
         }
         
