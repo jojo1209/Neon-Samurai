@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public FixedJoystick joystick;
+public Rigidbody myRigidbody;
+public float speed = 20f;
+
+
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Inupt.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-            touchPosition.z = 0f;
-            transform.position = touchPosition;
-        }
+        myRigidbody.velocity = new Vector3(joystick.Horizontal * speed, joystick.Vertical * speed, myRigidbody.velocity.z);
+
         
     }
 }
+
+
+
+
+// if (Inupt.touchCount > 0)
+//         {
+//             Touch touch = Input.GetTouch(0);
+//             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+//             touchPosition.z = 0f;
+//             transform.position = touchPosition;
+//         }
