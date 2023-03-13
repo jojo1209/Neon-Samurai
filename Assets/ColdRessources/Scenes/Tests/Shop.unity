@@ -928,6 +928,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 100
   CoinsTXT: {fileID: 1503848991}
+  ItemData: {fileID: 11400000, guid: 260c47481ffc3d94496c4f0cc6af5d34, type: 2}
+  inv: {fileID: 11400000, guid: 07c54beca7b3d4c47b5908462ae72915, type: 2}
 --- !u!4 &655331166
 Transform:
   m_ObjectHideFlags: 0

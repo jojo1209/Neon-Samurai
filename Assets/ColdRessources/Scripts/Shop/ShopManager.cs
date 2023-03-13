@@ -11,7 +11,8 @@ public class ShopManager : MonoBehaviour
     public int[,] shopItem = new int[5, 5];
     public float coins;
     public TMP_Text CoinsTXT;
-
+    public InventoryData inv;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,16 +29,22 @@ public class ShopManager : MonoBehaviour
         shopItem[2, 3] = 30;
 
         //Quantity
-        shopItem[3, 1] = 0;
-        shopItem[3, 2] = 0;
-        shopItem[3, 3] = 0;
+        shopItem[3, 1] = inv.item1;
+        shopItem[3, 2] = inv.item2;
+        shopItem[3, 3] = inv.item3;
 
+
+      /*  shopItem[3, 1] = 0;
+        shopItem[3, 2] = 0;
+        shopItem[3, 3] = 0;*/
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        inv.item1 = shopItem[3, 1];
+        inv.item2 = shopItem[3, 2];
+        inv.item3 = shopItem[3, 3];
     }
 
     public void Buy() 
