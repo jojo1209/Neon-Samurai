@@ -20,9 +20,6 @@ public class Enemy : MonoBehaviour {
 
 	private void Start()
 	{
-		foreach (GameObject cannon in cannons) {
-			cannon.transform.Rotate(90, 0, 0);
-		}
 		InvokeRepeating(nameof(StartShooting), startShootingAt, cooldown+nbConsecutiveShot*cdBetweenShots);
 		Invoke(nameof(StopShooting), startShootingAt + numberOfShot * cooldown);
 	}
