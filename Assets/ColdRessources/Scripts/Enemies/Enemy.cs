@@ -1,71 +1,66 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
-	[SerializeField] private float cooldown = 0;
-	[SerializeField] private List<Patern> paterns;
+	[Header("Shoot mechanic")]
 	[SerializeField] private List<GameObject> cannons;
-	[SerializeField] private bool targetPlayer = false;
+	[SerializeField] private Bullet bulletPrefab;
+	[SerializeField] private float startShootingAt = 0;
+	[SerializeField] private float cooldown = 1;
+	[SerializeField] private int nbConsecutiveShot = 2;
+	[SerializeField] private float cdBetweenShots = 0.3f;
+	[SerializeField] private int numberOfShot = 3;
+	[SerializeField] private float bulletTimeToLive = 3;
+	[SerializeField] private float bulletSpeedMultiplier = 1;
+	[Space]
+	[Header("Score")]
 	[Tooltip("The score increment when the player kills it")]
-	[SerializeField] private int value;
-	[SerializeField] private float bulletSpeedMultiplier;
-	private float cdCounter = 0;
-	private int paternIndex = 0;
+	[SerializeField] private int value = 10;
 
-	private void Start() {
-		if (!targetPlayer) {
-			foreach (GameObject cannon in cannons) {
-				cannon.transform.Rotate(90, 0, 0);
-			}
+	private void Start()
+	{
+		foreach (GameObject cannon in cannons) {
+			cannon.transform.Rotate(90, 0, 0);
+		}
+		InvokeRepeating(nameof(StartShooting), startShootingAt, cooldown+nbConsecutiveShot*cdBetweenShots);
+		Invoke(nameof(StopShooting), startShootingAt + numberOfShot * cooldown);
+	}
+
+	private void StartShooting()
+	{
+		for (int i = 0; i < nbConsecutiveShot; i++)
+		{
+			Invoke(nameof(Shoot), i*cdBetweenShots);
 		}
 	}
 
-	public void Shoot() {
-		for (int i = 0; i < cannons.Count; i++) {
-			// get bullets
-			string bulletType = paterns[paternIndex].bulletTypes[i];
-			Bullet bullet = BulletManager.SharedInstance.GetBullet(bulletType).GetComponent<Bullet>();
+	private void StopShooting()
+	{
+		CancelInvoke(nameof(StartShooting));
+	}
 
-			// prepare shoot
-			var cannon = cannons[i];
-			// set the position
-			bullet.transform.position = cannon.transform.position;
-			// set the rotation
-			if (!targetPlayer) {
-				var cannonRot = cannon.transform.rotation;
-				bullet.transform.rotation = Quaternion.Euler(cannonRot.x + 90, cannonRot.y, 0);
-			}
-			else {
-				bullet.transform.LookAt(Player.SharedInstance.transform);
-			}
-			// bullet.direction = cannon.transform.forward;
+	private void Shoot()
+	{
+		foreach (Bullet bullet in cannons.Select(cannon => Instantiate(bulletPrefab, cannon.transform)))
+		{
 			bullet.speedMultiplier = bulletSpeedMultiplier;
-			bullet.gameObject.SetActive(true);
-		}
-
-		// update index for next shoot
-		paternIndex = (paternIndex + 1) % paterns.Count;
-	}
-
-	private void Update() {
-		if (targetPlayer)
-			foreach (GameObject cannon in cannons) {
-				cannon.transform.LookAt(Player.SharedInstance.transform, Vector3.down);
-				cannon.transform.Rotate(90, 0, 0);
-			}
-		cdCounter += Time.deltaTime;
-		if (cdCounter >= cooldown) {
-			Shoot();
-			cdCounter %= cooldown;
+			bullet.timeToLive = bulletTimeToLive;
 		}
 	}
+
 	public void Die() {
 		// Update score
-		float score = PlayerPrefs.GetFloat("Score");
+		var score = PlayerPrefs.GetFloat("Score");
 		PlayerPrefs.SetFloat("Score", score + value);
-
 		// Death
-		Debug.Log("mort ennemie");
 		Destroy(gameObject);
+	}
+
+	private void OnDestroy()
+	{
+		CancelInvoke(nameof(StopShooting));
+		StopShooting();
+		CancelInvoke(nameof(Shoot));
 	}
 }

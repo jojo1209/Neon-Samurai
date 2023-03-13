@@ -2,37 +2,31 @@ using UnityEngine;
 using System;
 
 public class Bullet : MonoBehaviour {
-	[Tooltip("The bullet type")]
-	[SerializeField] private string bulletType = "lazer";
 	[Tooltip("The speed of the bullet")]
 	[SerializeField] private float baseSpeed = 20;
 
-	private float counter = 0;
-
-	private float speed;
 	[NonSerialized] public float speedMultiplier = 1;
+	[NonSerialized] public float timeToLive = 3;
 
-	private void OnEnable() {
-		counter = 0;
-		speed = baseSpeed * speedMultiplier;
+	private void Start()
+	{
+		Invoke(nameof(Die), timeToLive);
+	}
+
+	private void Die()
+	{
+		Destroy(gameObject);
 	}
 
 	private void Update() {
-		counter += Time.deltaTime;
-		if (counter > 3) {
-			BulletManager.SharedInstance.ReturnBullet(gameObject, bulletType);
-			gameObject.SetActive(false);
-			return;
-		}
+		var speed = baseSpeed * speedMultiplier;
 		transform.position += transform.forward * speed * Time.deltaTime;
-		Debug.DrawRay(this.transform.position,this.transform.forward, Color.blue);
 	}
 
-	private void OnTriggerEnter(Collider other) {
-		if (other.TryGetComponent<PlayerDeath>(out PlayerDeath player)) {
-			player.Die();
-			BulletManager.SharedInstance.ReturnBullet(gameObject, bulletType);
-			gameObject.SetActive(false);
-		}
+	private void OnTriggerEnter(Collider other)
+	{
+		if (!other.TryGetComponent<PlayerDeath>(out PlayerDeath player)) return;
+		player.Die();
+		Destroy(gameObject);
 	}
 }
