@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+public class Enemy: MonoBehaviour
+{
 	[Header("Shoot mechanic")]
-	[SerializeField] private List<GameObject> cannons;
+	[SerializeField] private Transform cannonsTransform;
 	[SerializeField] private Bullet bulletPrefab;
 	[SerializeField] private float startShootingAt = 0;
 	[SerializeField] private float cooldown = 1;
@@ -13,23 +13,26 @@ public class Enemy : MonoBehaviour {
 	[SerializeField] private int numberOfShot = 3;
 	[SerializeField] private float bulletTimeToLive = 3;
 	[SerializeField] private float bulletSpeedMultiplier = 1;
+
 	[Space]
 	[Header("Score")]
-	[Tooltip("The score increment when the player kills it")]
-	[SerializeField] private int value = 10;
+	[SerializeField] [Tooltip("The score increment when the player kills it")]
+	private int value = 10;
+
+	private List<Transform> cannons;
 
 	private void Start()
 	{
-		InvokeRepeating(nameof(StartShooting), startShootingAt, cooldown+nbConsecutiveShot*cdBetweenShots);
+		cannons = new List<Transform>();
+		for (var i = 0; i < cannonsTransform.childCount; i++) cannons.Add(cannonsTransform.GetChild(i));
+		InvokeRepeating(nameof(StartShooting), startShootingAt, cooldown + nbConsecutiveShot * cdBetweenShots);
 		Invoke(nameof(StopShooting), startShootingAt + numberOfShot * cooldown);
 	}
 
 	private void StartShooting()
 	{
 		for (int i = 0; i < nbConsecutiveShot; i++)
-		{
-			Invoke(nameof(Shoot), i*cdBetweenShots);
-		}
+			Invoke(nameof(Shoot), i * cdBetweenShots);
 	}
 
 	private void StopShooting()
@@ -39,14 +42,16 @@ public class Enemy : MonoBehaviour {
 
 	private void Shoot()
 	{
-		foreach (Bullet bullet in cannons.Select(cannon => Instantiate(bulletPrefab, cannon.transform)))
+		foreach (Transform cannon in cannons)
 		{
+			Bullet bullet = Instantiate(bulletPrefab, cannon);
 			bullet.speedMultiplier = bulletSpeedMultiplier;
 			bullet.timeToLive = bulletTimeToLive;
 		}
 	}
 
-	public void Die() {
+	public void Die()
+	{
 		// Update score
 		var score = PlayerPrefs.GetFloat("Score");
 		PlayerPrefs.SetFloat("Score", score + value);

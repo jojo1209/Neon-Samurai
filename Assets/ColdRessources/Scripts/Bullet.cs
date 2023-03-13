@@ -25,8 +25,10 @@ public class Bullet : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (!other.TryGetComponent<PlayerDeath>(out PlayerDeath player)) return;
-		player.Die();
-		Destroy(gameObject);
+		if (other.TryGetComponent(out PlayerDeath player))
+		{
+			player.Die();
+			Destroy(gameObject);
+		}
 	}
 }
