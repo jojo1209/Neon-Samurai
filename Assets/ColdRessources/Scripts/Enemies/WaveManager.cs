@@ -1,39 +1,49 @@
-// using UnityEngine;
-// using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
-// public class WaveManager: MonoBehaviour {
-// 	public List<EnemyWave> waves;
-// 	private double timer = 0;
-// 	private EnemyWave currentWave;
+public class WaveManager: MonoBehaviour
+{
+	[SerializeField] private Transform enemiesContainer;
+	[SerializeField] private Wave[] waves;
+	private int waveIndex;
+	private List<EnemySpawn> currentWave;
+	private int enemyIndex;
 
-// 	private void Start() {
-// 		if (waves.Count > 0) {
-// 			CreateWave();
-// 		}
-// 	}
+	private void Start()
+	{
+		waveIndex = 0;
+		currentWave = new List<EnemySpawn>();
+		NextWave();
+	}
+	
+	public void NextWave() {
+		CancelInvoke(nameof(NextWave));
+		if (waveIndex >= waves.Length) {
+			// todo victory screen
+			return;
+		}
 
-// 	private void CreateWave() {
-// 		currentWave = waves[0];
-// 		waves.RemoveAt(0);
-// 		var spawn = currentWave.enemies;
-// 		for (int i = 0; i < spawn.Count; i++) {
-// 			var startPosition = spawn[i].startPosition;
-// 			var enemy = spawn[i].enemy;
-// 			enemy.transform.position = startPosition;
-// 		}
-// 	}
+		currentWave = waves[waveIndex].enemies.ToList();
+		var waveEnd = 0f;
+		enemyIndex = 0;
+		currentWave.Sort((x,y) => x.spawnAt.CompareTo(y.spawnAt));
 
-// 	private void Update() {
-// 		timer += Time.deltaTime;
-// 		foreach (EnemySpawn enemy in currentWave.enemies) {
-// 			while (timer > enemy.shoot[0].when) {
-// 				enemy.enemy.StartShooting(enemy.shoot[0]);
-// 				enemy.shoot.RemoveAt(0);
-// 			}
-// 			while (timer > enemy.move[0].when) {
-// 				enemy.move.RemoveAt(0);
-// 			}
-// 		}
-// 	}
+		foreach (EnemySpawn enemy in currentWave) {
+			var deathTime = enemy.screenTime + enemy.spawnAt;
+			if (deathTime > waveEnd) waveEnd = deathTime;
+			Invoke(nameof(SpawnEnemy), enemy.spawnAt);
+		}
+		waveIndex++;
+		Invoke(nameof(NextWave), waveEnd+1);
+	}
 
-// }
+	public void SpawnEnemy() {
+		EnemySpawn enemy = currentWave[enemyIndex];
+		enemyIndex++;
+		Enemy instance = Instantiate(enemy.enemyPrefab, enemiesContainer);
+		instance.xMovement = enemy.xMovement;
+		instance.yMovement = enemy.yMovement;
+		instance.screenTime = enemy.screenTime;
+	}
+}

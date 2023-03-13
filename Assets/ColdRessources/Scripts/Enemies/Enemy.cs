@@ -6,20 +6,24 @@ public class Enemy: MonoBehaviour
 	[Header("Shoot mechanic")]
 	[SerializeField] private Transform cannonsTransform;
 	[SerializeField] private Bullet bulletPrefab;
-	[SerializeField] private float startShootingAt = 0;
-	[SerializeField] private float cooldown = 1;
-	[SerializeField] private int nbConsecutiveShot = 2;
-	[SerializeField] private float cdBetweenShots = 0.3f;
-	[SerializeField] private int numberOfShot = 3;
-	[SerializeField] private float bulletTimeToLive = 3;
-	[SerializeField] private float bulletSpeedMultiplier = 1;
+	[SerializeField] private float startShootingAt;
+	[SerializeField] private float cooldown;
+	[SerializeField] private int nbConsecutiveShot;
+	[SerializeField] private float cdBetweenShots;
+	[SerializeField] private int numberOfShot;
+	[SerializeField] private float bulletTimeToLive;
+	[SerializeField] private float bulletSpeedMultiplier;
 
 	[Space]
 	[Header("Score")]
 	[SerializeField] [Tooltip("The score increment when the player kills it")]
 	private int value = 10;
-
 	private List<Transform> cannons;
+	// movement mechanic
+	public AnimationCurve xMovement;
+	public AnimationCurve yMovement;
+	public float screenTime;
+	public float timeSinceCreation;
 
 	private void Start()
 	{
@@ -44,10 +48,25 @@ public class Enemy: MonoBehaviour
 	{
 		foreach (Transform cannon in cannons)
 		{
-			Bullet bullet = Instantiate(bulletPrefab, cannon);
+			Bullet bullet = Instantiate(bulletPrefab);
+			bullet.transform.position = cannon.position;
+			bullet.transform.rotation = cannon.rotation;
 			bullet.speedMultiplier = bulletSpeedMultiplier;
 			bullet.timeToLive = bulletTimeToLive;
 		}
+	}
+
+	private void Update()
+	{
+		timeSinceCreation += Time.deltaTime;
+		
+		// not on screen anymore
+		if (timeSinceCreation >= screenTime) { Die(); return; }
+		
+		// update position
+		var x = xMovement.Evaluate(timeSinceCreation / screenTime) * Screen.width;
+		var y = yMovement.Evaluate(timeSinceCreation / screenTime) * Screen.height;
+		transform.position = new Vector2(x, y);
 	}
 
 	public void Die()
