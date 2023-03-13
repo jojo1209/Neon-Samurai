@@ -9,4 +9,7 @@ public class InventoryData : ScriptableObject
     public int item2;
     public int item3;
 
+
+    public float coins;
+    public float gems;
 }

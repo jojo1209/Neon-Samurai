@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f327b1c733b5e5c4d976644a8a5183fe, type: 3}
   m_Name: Inventory
   m_EditorClassIdentifier: 
-  item1: 3
-  item2: 4
-  item3: 5
+  item1: 0
+  item2: 0
+  item3: 0
+  coins: 1000
+  gems: 50
