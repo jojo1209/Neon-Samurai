@@ -20,15 +20,13 @@ public class Bullet : MonoBehaviour {
 
 	private void Update() {
 		var speed = baseSpeed * speedMultiplier;
-		transform.position += transform.forward * speed * Time.deltaTime;
+		transform.position += transform.forward * speed;
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.TryGetComponent(out PlayerDeath player))
-		{
-			player.Die();
-			Destroy(gameObject);
-		}
+		if (!other.TryGetComponent(out PlayerDeath player)) return;
+		player.Die();
+		Destroy(gameObject);
 	}
 }

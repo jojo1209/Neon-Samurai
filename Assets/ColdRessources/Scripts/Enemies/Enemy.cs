@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,16 +21,15 @@ public class Enemy: MonoBehaviour
 	private int value = 10;
 	private List<Transform> cannons;
 	// movement mechanic
-	public AnimationCurve xMovement;
-	public AnimationCurve yMovement;
-	public float screenTime;
-	public float timeSinceCreation;
-	private Camera mainCamera;
+	[NonSerialized] public AnimationCurve xMovement;
+	[NonSerialized] public AnimationCurve yMovement;
+	[NonSerialized] public float screenTime;
+	private float timeSinceCreation;
 
 	private void Start()
 	{
-		mainCamera = Camera.main;
 		cannons = new List<Transform>();
+		timeSinceCreation = 0;
 		for (var i = 0; i < cannonsTransform.childCount; i++) cannons.Add(cannonsTransform.GetChild(i));
 		InvokeRepeating(nameof(StartShooting), startShootingAt, cooldown + nbConsecutiveShot * cdBetweenShots);
 		Invoke(nameof(StopShooting), startShootingAt + numberOfShot * cooldown);
@@ -66,9 +66,9 @@ public class Enemy: MonoBehaviour
 		if (timeSinceCreation >= screenTime) { Die(); return; }
 		
 		// update position
-		var x = xMovement.Evaluate(timeSinceCreation / screenTime) * mainCamera.pixelWidth;
-		var y = yMovement.Evaluate(timeSinceCreation / screenTime) * mainCamera.pixelHeight;
-		transform.position = new Vector2(x, y);
+		var x = xMovement.Evaluate(timeSinceCreation / screenTime);
+		var y = yMovement.Evaluate(timeSinceCreation / screenTime);
+		transform.position = Camera.main.ViewportToScreenPoint(new Vector2(x, y));
 	}
 
 	public void Die()
