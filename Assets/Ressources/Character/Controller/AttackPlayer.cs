@@ -6,10 +6,14 @@ public class AttackPlayer : MonoBehaviour
 	public List<Enemy> enemyList;
 	public float cooldown = 1;
 	public bool canAttack;
+	
+	private bool isBulletTimeActivated;
+	
 
 	void Start()
 	{
 		canAttack = true;
+		isBulletTimeActivated = false;
 	}
 
 	private void Update()
@@ -41,5 +45,18 @@ public class AttackPlayer : MonoBehaviour
 	private void OnTriggerExit(Collider other) {
 		if (other.TryGetComponent<Enemy>(out Enemy e))
 			enemyList.Remove(e);
+	}
+
+	public void ActivateBulletTime()
+	{
+		isBulletTimeActivated = true;
+		Time.timeScale = 0.1f;
+		Invoke(nameof(DeactivateBulletTime), 3);
+	}
+
+	public void DeactivateBulletTime()
+	{
+		isBulletTimeActivated = false;
+		Time.timeScale = 1f;
 	}
 }
