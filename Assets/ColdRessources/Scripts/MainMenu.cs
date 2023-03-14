@@ -10,7 +10,7 @@ public class MainMenu: MonoBehaviour
 	void Start()
 	{
 		playButton.onClick.AddListener(() => { SceneManager.LoadScene("EnemiesTestScene"); });
-		shopButton.onClick.AddListener(() => { SceneManager.LoadScene("EnemiesTestScene"); });
+		shopButton.onClick.AddListener(() => { SceneManager.LoadScene("Shop"); });
 		quitButton.onClick.AddListener(() => { Application.Quit(); });
 	}
 }
