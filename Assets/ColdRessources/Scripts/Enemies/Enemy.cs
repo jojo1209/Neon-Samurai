@@ -24,9 +24,11 @@ public class Enemy: MonoBehaviour
 	public AnimationCurve yMovement;
 	public float screenTime;
 	public float timeSinceCreation;
+	private Camera mainCamera;
 
 	private void Start()
 	{
+		mainCamera = Camera.main;
 		cannons = new List<Transform>();
 		for (var i = 0; i < cannonsTransform.childCount; i++) cannons.Add(cannonsTransform.GetChild(i));
 		InvokeRepeating(nameof(StartShooting), startShootingAt, cooldown + nbConsecutiveShot * cdBetweenShots);
@@ -64,8 +66,8 @@ public class Enemy: MonoBehaviour
 		if (timeSinceCreation >= screenTime) { Die(); return; }
 		
 		// update position
-		var x = xMovement.Evaluate(timeSinceCreation / screenTime) * Screen.width;
-		var y = yMovement.Evaluate(timeSinceCreation / screenTime) * Screen.height;
+		var x = xMovement.Evaluate(timeSinceCreation / screenTime) * mainCamera.pixelWidth;
+		var y = yMovement.Evaluate(timeSinceCreation / screenTime) * mainCamera.pixelHeight;
 		transform.position = new Vector2(x, y);
 	}
 

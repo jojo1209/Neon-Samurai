@@ -136,7 +136,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4569588904115626045}
   m_RootOrder: 1
@@ -604,7 +604,7 @@ Transform:
   m_LocalRotation: {x: -0.29732695, y: 0.2697426, z: 0.9098843, w: 0.10462428}
   m_LocalPosition: {x: -1.1434892, y: -0.5519287, z: -0.06736698}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6619846277559296267}
   m_Father: {fileID: 8302986424591745193}
@@ -798,7 +798,7 @@ Transform:
   m_LocalRotation: {x: 0.11230902, y: -0.0037962373, z: 0.010369916, w: 0.993612}
   m_LocalPosition: {x: -0, y: 0.9928064, z: -0.0427066}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2904654143584561106}
   m_Father: {fileID: 8302986424591745193}
@@ -830,7 +830,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8302986424591745193}
   - {fileID: 439382375635564336}
@@ -894,7 +894,7 @@ Transform:
   m_LocalRotation: {x: 0.18903938, y: 0.3441596, z: 0.012079222, w: 0.9196045}
   m_LocalPosition: {x: -0.023577861, y: 9.717336, z: -0.3078331}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1973880044079659477}
   - {fileID: 5314163959443306390}
@@ -1466,7 +1466,7 @@ Transform:
   m_LocalRotation: {x: -0.07038288, y: 0.19735408, z: 0.9768243, w: -0.043726362}
   m_LocalPosition: {x: 1.1434892, y: -0.5519287, z: -0.087482415}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8422314401796425996}
   m_Father: {fileID: 8302986424591745193}

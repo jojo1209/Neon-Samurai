@@ -28,7 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7956428151653428687}
   - {fileID: 2997015897742948874}
@@ -71,6 +71,20 @@ MonoBehaviour:
   bulletTimeToLive: 3
   bulletSpeedMultiplier: 1
   value: 10
+  xMovement:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  yMovement:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  screenTime: 0
+  timeSinceCreation: 0
 --- !u!1 &4443266836193359861
 GameObject:
   m_ObjectHideFlags: 0
