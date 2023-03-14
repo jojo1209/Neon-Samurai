@@ -6,6 +6,7 @@ public class AttackPlayer : MonoBehaviour
 	public List<Enemy> enemyList;
 	public float cooldown = 1;
 	public bool canAttack;
+	public PlayerAnimation anim_Attack;
 
 	void Start()
 	{
@@ -20,7 +21,7 @@ public class AttackPlayer : MonoBehaviour
 	public void Attack()  {
 		if(!canAttack) return;
 		if(enemyList.Count <= 0) return;
-
+		anim_Attack.OnAttack();
 		enemyList[0].Die();
 		enemyList.RemoveAt(0);
 		canAttack = false;
