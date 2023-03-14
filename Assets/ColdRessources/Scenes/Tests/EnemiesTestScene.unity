@@ -281,6 +281,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 144064163172553525, guid: 692cf0c9e3602404689c7bc625787032,
+        type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 144064163172553525, guid: 692cf0c9e3602404689c7bc625787032,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144064163172553525, guid: 692cf0c9e3602404689c7bc625787032,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2331467424580153856, guid: 692cf0c9e3602404689c7bc625787032,
         type: 3}
       propertyPath: m_Enabled
@@ -295,6 +310,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player new controllr
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165328418607872986, guid: 692cf0c9e3602404689c7bc625787032,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7165328418607872996, guid: 692cf0c9e3602404689c7bc625787032,
         type: 3}
@@ -350,6 +370,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689194165471572285, guid: 692cf0c9e3602404689c7bc625787032,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: b4cfb9a2f98881a4091fe04624ab432c,
+        type: 2}
+    - target: {fileID: 8663489449146965318, guid: 692cf0c9e3602404689c7bc625787032,
+        type: 3}
+      propertyPath: speed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8663489449146965318, guid: 692cf0c9e3602404689c7bc625787032,
         type: 3}
