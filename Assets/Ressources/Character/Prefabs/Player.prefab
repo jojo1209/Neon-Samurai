@@ -1433,6 +1433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathDisplay: {fileID: 0}
+  Anim_death: {fileID: 9023593446746296557}
 --- !u!114 &9023593446746296557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1445,7 +1446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6659c5eedee3db24aa8df9254cb4d261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player_Anim: {fileID: 0}
+  Player_Anim: {fileID: 5118555381302473154}
 --- !u!65 &1815192033
 BoxCollider:
   m_ObjectHideFlags: 0
