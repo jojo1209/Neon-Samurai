@@ -1450,6 +1450,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3667002482368365068, guid: 244e181a1ea93d847a5bbab38224eb25,
         type: 3}
+      propertyPath: scale
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667002482368365068, guid: 244e181a1ea93d847a5bbab38224eb25,
+        type: 3}
       propertyPath: vitesse
       value: 8
       objectReference: {fileID: 0}
