@@ -7,13 +7,15 @@ public class AttackPlayer : MonoBehaviour
 	public List<Enemy> enemyList;
 	public float cooldown = 1;
 	[NonSerialized] public bool canAttack;
-	
-	private bool isBulletTimeActivated;
+	[SerializeField] public AudioSource attaque;
+
+    private bool isBulletTimeActivated;
 
 
 	private void Start()
 	{
-		canAttack = true;
+		attaque.playOnAwake = false;
+        canAttack = true;
 		isBulletTimeActivated = false;
 	}
 
@@ -25,8 +27,8 @@ public class AttackPlayer : MonoBehaviour
 	private void Attack()  {
 		if(!canAttack) return;
 		if(enemyList.Count <= 0) return;
-
-		enemyList[0].Die();
+		attaque.Play();
+        enemyList[0].Die();
 		enemyList.RemoveAt(0);
 		canAttack = false;
 		Invoke(nameof(AttackReady), cooldown);
