@@ -13,6 +13,7 @@ public class MapController : MonoBehaviour
     public float vitesse;
 
     public int batY = 16;
+    public int scale=1;
 
 
 
@@ -32,18 +33,20 @@ public class MapController : MonoBehaviour
 
     private void Awake()
     {
-
+        batY = batY * scale;
         bats = new List<GameObject>();
 
 
         foreach (GameObject m in mapBiomes[indexBiome].BatBiome)
         {
             GameObject b = Instantiate(m);
+            b.transform.localScale=b.transform.localScale* scale;
             bats.Add(b);
         }
         batnn = batn = mapBiomes[indexBiome].BatBiome.Length;
 
         repetition = mapBiomes[indexBiome].repetition;
+
 
     }
 
@@ -54,7 +57,7 @@ public class MapController : MonoBehaviour
 
         for (int i = 0; i < batn; i++)
         {
-            bats[i].transform.position = new Vector3(0, i * batY, 0);
+            bats[i].transform.position = new Vector3(720, i * batY, 0);
         }
         batDown = 0;
         batUp = batn - 1;
@@ -71,11 +74,13 @@ public class MapController : MonoBehaviour
         foreach (GameObject m in mapBiomes[indexBiome].BatBiome)
         {
             GameObject b = Instantiate(m);
+            b.transform.localScale = b.transform.localScale * scale;
             bats.Add(b);
+           
         }
         for (int i = batUp + 1; i < bats.Count; i++)
         {
-            bats[i].transform.position = new Vector3(0, bats[batUp].transform.position.y + (i - batUp) * batY, 0);
+            bats[i].transform.position = new Vector3(720, bats[batUp].transform.position.y + (i - batUp) * batY, 0);
         }
         batn = mapBiomes[indexBiome].BatBiome.Length;
         batnn = bats.Count;
@@ -89,7 +94,7 @@ public class MapController : MonoBehaviour
 
         foreach (var bat in bats)
         {
-            bat.transform.position += Vector3.down * vitesse * Time.deltaTime;
+            bat.transform.position += Vector3.down * vitesse * Time.deltaTime * scale*Time.timeScale;
         }
 
 
