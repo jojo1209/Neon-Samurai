@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-public FixedJoystick joystick;
+public FloatingJoystick joystick;
 public Rigidbody myRigidbody;
 public float speed = 20f;
 
