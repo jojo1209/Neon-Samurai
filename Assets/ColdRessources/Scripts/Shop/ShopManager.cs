@@ -16,8 +16,8 @@ public class ShopManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CoinsTXT.text = "Coins: " + inv.coins.ToString();
-        GemsTXT.text = "Gems: " + inv.gems.ToString();
+        CoinsTXT.text = "     " + inv.coins.ToString();
+        GemsTXT.text = "     " + inv.gems.ToString();
 
 
         //ID
@@ -58,14 +58,14 @@ public class ShopManager : MonoBehaviour
         {
             inv.coins -= shopItem[2, ButtonRef.GetComponent<ButtonInfo>().ItemID];
             shopItem[3, ButtonRef.GetComponent<ButtonInfo>().ItemID]++;
-            CoinsTXT.text = "Coins: " + inv.coins.ToString();
+            CoinsTXT.text = "     " + inv.coins.ToString();
             ButtonRef.GetComponent<ButtonInfo>().QuantityTxt.text = shopItem[3, ButtonRef.GetComponent<ButtonInfo>().ItemID].ToString();
         }
         else if (inv.gems >= shopItem[4, ButtonRef.GetComponent<ButtonInfo>().ItemID])
         {
             inv.gems -= shopItem[4, ButtonRef.GetComponent<ButtonInfo>().ItemID];
             shopItem[3, ButtonRef.GetComponent<ButtonInfo>().ItemID]++;
-            GemsTXT.text = "Gems: " + inv.gems.ToString();
+            GemsTXT.text = "     " + inv.gems.ToString();
             ButtonRef.GetComponent<ButtonInfo>().QuantityTxt.text = shopItem[3, ButtonRef.GetComponent<ButtonInfo>().ItemID].ToString();
         }
 
