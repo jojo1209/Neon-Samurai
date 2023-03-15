@@ -65,7 +65,7 @@ public class Enemy: MonoBehaviour
 		timeSinceCreation += Time.deltaTime;
 		
 		// not on screen anymore
-		if (timeSinceCreation >= screenTime) { Die(); return; }
+		if (timeSinceCreation >= screenTime) { Destroy(gameObject); return; }
 		
 		// update position
 		var x = xMovement.Evaluate(timeSinceCreation / screenTime);
