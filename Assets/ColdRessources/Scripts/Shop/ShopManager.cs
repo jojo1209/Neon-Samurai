@@ -26,9 +26,9 @@ public class ShopManager : MonoBehaviour
         shopItem[1, 3] = 3;
 
         //Price
-        shopItem[2, 1] = 100;
+        shopItem[2, 1] = 400;
         shopItem[2, 2] = 200;
-        shopItem[2, 3] = 300;
+        shopItem[2, 3] = 50;
 
         //Quantity
         shopItem[3, 1] = inv.item1;
@@ -36,9 +36,9 @@ public class ShopManager : MonoBehaviour
         shopItem[3, 3] = inv.item3;
 
         //Price Gem
-        shopItem[4, 1] = 5;
+        shopItem[4, 1] = 15;
         shopItem[4, 2] = 10;
-        shopItem[4, 3] = 15;
+        shopItem[4, 3] = 5;
 
     }
 
