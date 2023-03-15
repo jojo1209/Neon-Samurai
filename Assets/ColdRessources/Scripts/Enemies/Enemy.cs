@@ -13,8 +13,9 @@ public class Enemy: MonoBehaviour
 	[SerializeField] private int numberOfShot;
 	[SerializeField] private float bulletTimeToLive;
 	[SerializeField] private float bulletSpeedMultiplier;
+    [SerializeField] private AudioSource laser;
 
-	[Space]
+    [Space]
 	[Header("Score")]
 	[SerializeField] [Tooltip("The score increment when the player kills it")]
 	private int value = 10;
@@ -27,7 +28,8 @@ public class Enemy: MonoBehaviour
 
 	private void Start()
 	{
-		cannons = new List<Transform>();
+		laser.playOnAwake = false;
+        cannons = new List<Transform>();
 		for (var i = 0; i < cannonsTransform.childCount; i++) cannons.Add(cannonsTransform.GetChild(i));
 		InvokeRepeating(nameof(StartShooting), startShootingAt, cooldown + nbConsecutiveShot * cdBetweenShots);
 		Invoke(nameof(StopShooting), startShootingAt + numberOfShot * cooldown);
@@ -37,7 +39,8 @@ public class Enemy: MonoBehaviour
 	{
 		for (int i = 0; i < nbConsecutiveShot; i++)
 			Invoke(nameof(Shoot), i * cdBetweenShots);
-	}
+        
+    }
 
 	private void StopShooting()
 	{
@@ -46,7 +49,8 @@ public class Enemy: MonoBehaviour
 
 	private void Shoot()
 	{
-		foreach (Transform cannon in cannons)
+        laser.Play();
+        foreach (Transform cannon in cannons)
 		{
 			Bullet bullet = Instantiate(bulletPrefab);
 			bullet.transform.position = cannon.position;
