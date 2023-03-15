@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,6 +6,7 @@ public class WaveManager: MonoBehaviour
 {
 	public Transform enemiesContainer;
 	[SerializeField] private Wave[] waves;
+	[SerializeField] private CanvasRenderer VictoryScreen;
 	private int waveIndex;
 	private List<EnemySpawn> currentWave;
 	private int enemyIndex;
@@ -19,14 +19,10 @@ public class WaveManager: MonoBehaviour
 	}
 	
 	public void NextWave() {
-		CancelInvoke(nameof(NextWave));
 		if (waveIndex >= waves.Length) {
-			// todo victory screen
-			Debug.Log("Victory");
+			Invoke(nameof(Victory), 3);
 			return;
 		}
-
-		Debug.Log("Next Wave");
 
 		currentWave = waves[waveIndex].enemies.ToList();
 		var waveEnd = 0f;
@@ -39,7 +35,6 @@ public class WaveManager: MonoBehaviour
 			Invoke(nameof(SpawnEnemy), enemy.spawnAt);
 		}
 		waveIndex++;
-		Invoke(nameof(NextWave), waveEnd+1);
 	}
 
 	public void SpawnEnemy() {
@@ -53,7 +48,14 @@ public class WaveManager: MonoBehaviour
 
 	private void Update()
 	{
+		if (Time.timeScale == 0) return;
 		if (enemiesContainer.childCount == 0)
 			NextWave();
+	}
+
+	private void Victory()
+	{
+		Time.timeScale = 0;
+		VictoryScreen.gameObject.SetActive(true);
 	}
 }
