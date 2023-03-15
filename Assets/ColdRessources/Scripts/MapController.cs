@@ -57,7 +57,7 @@ public class MapController : MonoBehaviour
 
         for (int i = 0; i < batn; i++)
         {
-            bats[i].transform.position = new Vector3(720, i * batY, 0);
+            bats[i].transform.localPosition = new Vector3(720, i * batY, 0);
         }
         batDown = 0;
         batUp = batn - 1;
@@ -80,7 +80,7 @@ public class MapController : MonoBehaviour
         }
         for (int i = batUp + 1; i < bats.Count; i++)
         {
-            bats[i].transform.position = new Vector3(720, bats[batUp].transform.position.y + (i - batUp) * batY, 0);
+            bats[i].transform.localPosition = new Vector3(720, bats[batUp].transform.localPosition.y + (i - batUp) * batY, 0);
         }
         batn = mapBiomes[indexBiome].BatBiome.Length;
         batnn = bats.Count;
@@ -94,11 +94,11 @@ public class MapController : MonoBehaviour
 
         foreach (var bat in bats)
         {
-            bat.transform.position += Vector3.down * vitesse * Time.deltaTime * scale*Time.timeScale;
+            bat.transform.localPosition += Vector3.down * vitesse * Time.deltaTime * scale*Time.timeScale;
         }
 
 
-        if (bats[batDown].transform.position.y < -batY)
+        if (bats[batDown].transform.localPosition.y < -batY)
         {
 
             if (changeBiom)
@@ -115,7 +115,7 @@ public class MapController : MonoBehaviour
             else
             {
 
-                bats[batDown].transform.position = new Vector3(0, batY, 0) + bats[batUp].transform.position;
+                bats[batDown].transform.localPosition = new Vector3(0, batY, 0) + bats[batUp].transform.localPosition;
                 int p = batDown;
 
                 batUp = p;

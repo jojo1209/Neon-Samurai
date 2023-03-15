@@ -10,7 +10,7 @@ public class Score : MonoBehaviour {
 			PlayerPrefs.SetFloat("Score", 0);
 	}
 
-	void Update() {
+	private void Update() {
 		// Retrieve score
 		float score = PlayerPrefs.GetFloat("Score");
 
