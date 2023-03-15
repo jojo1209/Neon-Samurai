@@ -289,7 +289,7 @@ PrefabInstance:
     - target: {fileID: 144064163172553525, guid: 692cf0c9e3602404689c7bc625787032,
         type: 3}
       propertyPath: m_UseGravity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 144064163172553525, guid: 692cf0c9e3602404689c7bc625787032,
         type: 3}
@@ -1386,4 +1386,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cfa5ebf35281a84da3dcc4c8f4a6a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenBounds: {x: 0, y: 0}
