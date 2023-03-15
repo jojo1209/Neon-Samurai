@@ -27,7 +27,7 @@ public class MapController : MonoBehaviour
     int batn = 4;
     int batnn = 4;
 
-
+    public Transform mapParent;
 
     private bool changeBiom = false;
 
@@ -39,9 +39,9 @@ public class MapController : MonoBehaviour
 
         foreach (GameObject m in mapBiomes[indexBiome].BatBiome)
         {
-            GameObject b = Instantiate(m);
+            GameObject b = Instantiate(m, mapParent);
             b.transform.localScale=b.transform.localScale* scale;
-            bats.Add(b);
+            bats.Add(b); 
         }
         batnn = batn = mapBiomes[indexBiome].BatBiome.Length;
 
@@ -73,7 +73,7 @@ public class MapController : MonoBehaviour
 
         foreach (GameObject m in mapBiomes[indexBiome].BatBiome)
         {
-            GameObject b = Instantiate(m);
+            GameObject b = Instantiate(m, mapParent);
             b.transform.localScale = b.transform.localScale * scale;
             bats.Add(b);
            

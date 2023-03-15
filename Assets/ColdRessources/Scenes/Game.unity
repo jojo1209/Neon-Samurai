@@ -270,6 +270,37 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 207a3efe5ea04484db81468bdca97dd1, type: 3}
+--- !u!1 &471952822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 471952823}
+  m_Layer: 0
+  m_Name: map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &471952823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471952822}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -900}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &559885545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,6 +1489,11 @@ PrefabInstance:
       propertyPath: vitesse
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3667002482368365068, guid: 244e181a1ea93d847a5bbab38224eb25,
+        type: 3}
+      propertyPath: mapParent
+      value: 
+      objectReference: {fileID: 471952823}
     - target: {fileID: 3667002482368365068, guid: 244e181a1ea93d847a5bbab38224eb25,
         type: 3}
       propertyPath: PrefabMap.Array.size

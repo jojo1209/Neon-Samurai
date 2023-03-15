@@ -14,7 +14,6 @@ public class AttackPlayer : MonoBehaviour
 
 	private void Start()
 	{
-		attaque.playOnAwake = false;
         canAttack = true;
 		isBulletTimeActivated = false;
 	}
