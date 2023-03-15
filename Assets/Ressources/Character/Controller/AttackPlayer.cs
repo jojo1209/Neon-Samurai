@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,12 +6,12 @@ public class AttackPlayer : MonoBehaviour
 {
 	public List<Enemy> enemyList;
 	public float cooldown = 1;
-	public bool canAttack;
+	[NonSerialized] public bool canAttack;
 	
 	private bool isBulletTimeActivated;
-	
 
-	void Start()
+
+	private void Start()
 	{
 		canAttack = true;
 		isBulletTimeActivated = false;
@@ -21,34 +22,30 @@ public class AttackPlayer : MonoBehaviour
 		Attack();
 	}
 
-	public void Attack()  {
+	private void Attack()  {
 		if(!canAttack) return;
 		if(enemyList.Count <= 0) return;
 
 		enemyList[0].Die();
 		enemyList.RemoveAt(0);
 		canAttack = false;
-		Invoke("AttackReady", cooldown);
+		Invoke(nameof(AttackReady), cooldown);
 	}
 
 
-	void AttackReady()
-	{
-		canAttack = true;
-	}
+	private void AttackReady() { canAttack = true; }
 
 	private void OnTriggerEnter(Collider other) {
-		if (other.TryGetComponent<Enemy>(out Enemy e))
+		if (other.TryGetComponent(out Enemy e))
 			enemyList.Add(e);
 	}
 
 	private void OnTriggerExit(Collider other) {
-		if (other.TryGetComponent<Enemy>(out Enemy e))
+		if (other.TryGetComponent(out Enemy e))
 			enemyList.Remove(e);
 	}
 
-	public void ActivateBulletTime()
-	{
+	public void ActivateBulletTime() {
 		isBulletTimeActivated = true;
 		Time.timeScale = 0.1f;
 		Invoke(nameof(DeactivateBulletTime), 3);
@@ -56,6 +53,7 @@ public class AttackPlayer : MonoBehaviour
 
 	public void DeactivateBulletTime()
 	{
+		CancelInvoke(nameof(DeactivateBulletTime));
 		isBulletTimeActivated = false;
 		Time.timeScale = 1f;
 	}

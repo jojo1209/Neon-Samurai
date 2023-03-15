@@ -164,6 +164,20 @@ MonoBehaviour:
   bulletTimeToLive: 3
   bulletSpeedMultiplier: 1
   value: 10
+  xMovement:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  yMovement:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  screenTime: 0
+  timeSinceCreation: 0
 --- !u!1 &8641527535945610568
 GameObject:
   m_ObjectHideFlags: 0

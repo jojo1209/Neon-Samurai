@@ -64,9 +64,9 @@ public class Enemy: MonoBehaviour
 		if (timeSinceCreation >= screenTime) { Die(); return; }
 		
 		// update position
-		var x = xMovement.Evaluate(timeSinceCreation / screenTime) * Screen.width;
-		var y = yMovement.Evaluate(timeSinceCreation / screenTime) * Screen.height;
-		transform.position = new Vector2(x, y);
+		var x = xMovement.Evaluate(timeSinceCreation / screenTime);
+		var y = yMovement.Evaluate(timeSinceCreation / screenTime);
+		transform.position = Camera.main.ViewportToScreenPoint(new Vector2(x, y));
 	}
 
 	public void Die()

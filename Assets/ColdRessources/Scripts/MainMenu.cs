@@ -9,8 +9,8 @@ public class MainMenu: MonoBehaviour
 	[SerializeField] private Button quitButton;
 	void Start()
 	{
-		playButton.onClick.AddListener(() => { SceneManager.LoadScene("EnemiesTestScene"); });
-		shopButton.onClick.AddListener(() => { SceneManager.LoadScene("Shop"); });
-		quitButton.onClick.AddListener(() => { Application.Quit(); });
+		playButton.onClick.AddListener(() => SceneManager.LoadScene("Game"));
+		shopButton.onClick.AddListener(() => SceneManager.LoadScene("Shop"));
+		quitButton.onClick.AddListener(Application.Quit);
 	}
 }

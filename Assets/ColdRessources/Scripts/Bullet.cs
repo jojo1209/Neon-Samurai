@@ -18,17 +18,17 @@ public class Bullet : MonoBehaviour {
 		Destroy(gameObject);
 	}
 
-	private void Update() {
+	private void Update()
+	{
+		if (Time.timeScale == 0) return;
 		var speed = baseSpeed * speedMultiplier;
-		transform.position += transform.forward * speed * Time.deltaTime;
+		transform.position += transform.forward * speed * Time.timeScale;
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.TryGetComponent(out PlayerDeath player))
-		{
-			player.Die();
-			Destroy(gameObject);
-		}
+		if (!other.TryGetComponent(out PlayerDeath player)) return;
+		player.Die();
+		Destroy(gameObject);
 	}
 }

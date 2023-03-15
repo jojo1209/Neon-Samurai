@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wave
   m_EditorClassIdentifier: 
   enemies:
-  - enemyPrefab: {fileID: 1626699353, guid: 2e616362d92f20d4c8dcf0084e8c12de, type: 3}
+  - enemyPrefab: {fileID: 1328743478, guid: 29cb36274e7e79449ab3ecdab1a73267, type: 3}
     spawnAt: 0
     screenTime: 8
     xMovement:

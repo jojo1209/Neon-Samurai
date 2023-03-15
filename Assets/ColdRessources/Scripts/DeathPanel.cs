@@ -9,7 +9,7 @@ public class DeathPanel : MonoBehaviour {
 
 	public void Start() {
 		replayButton.onClick.AddListener(() => {
-			SceneManager.LoadScene("EnemiesTestScene");
+			SceneManager.LoadScene("Game");
 		});
 
 		quitButton.onClick.AddListener(()=> {

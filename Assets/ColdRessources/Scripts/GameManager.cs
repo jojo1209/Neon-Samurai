@@ -1,19 +1,17 @@
+using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+	public static GameManager Instance;
 	public PlayerMouvements player;
+	public void Awake()
+	{
+		if (Instance == null)
+			Instance = this;
+	}
 
 	private void Start() {
 		Time.timeScale = 1;
-	}
-
-	void Update() {
-		if (Input.touchCount > 0) {
-			Touch touch = Input.GetTouch(0);
-			if (touch.phase == TouchPhase.Moved) {
-				Vector3 touchGap = touch.deltaPosition.normalized * Time.deltaTime;
-				player.MoveBy(touchGap);
-			}
-		}
 	}
 }

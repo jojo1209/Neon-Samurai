@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class WaveManager: MonoBehaviour
 {
-	[SerializeField] private Transform enemiesContainer;
+	public Transform enemiesContainer;
 	[SerializeField] private Wave[] waves;
 	private int waveIndex;
 	private List<EnemySpawn> currentWave;
@@ -21,8 +22,11 @@ public class WaveManager: MonoBehaviour
 		CancelInvoke(nameof(NextWave));
 		if (waveIndex >= waves.Length) {
 			// todo victory screen
+			Debug.Log("Victory");
 			return;
 		}
+
+		Debug.Log("Next Wave");
 
 		currentWave = waves[waveIndex].enemies.ToList();
 		var waveEnd = 0f;
@@ -45,5 +49,11 @@ public class WaveManager: MonoBehaviour
 		instance.xMovement = enemy.xMovement;
 		instance.yMovement = enemy.yMovement;
 		instance.screenTime = enemy.screenTime;
+	}
+
+	private void Update()
+	{
+		if (enemiesContainer.childCount == 0)
+			NextWave();
 	}
 }
