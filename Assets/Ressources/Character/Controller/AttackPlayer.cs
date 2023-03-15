@@ -9,13 +9,9 @@ public class AttackPlayer : MonoBehaviour
 	[NonSerialized] public bool canAttack;
 	[SerializeField] private AudioSource attaque;
 
-    private bool isBulletTimeActivated;
-
-
 	private void Start()
 	{
         canAttack = true;
-		isBulletTimeActivated = false;
 	}
 
 	private void Update()
@@ -34,7 +30,9 @@ public class AttackPlayer : MonoBehaviour
 	}
 
 
-	private void AttackReady() { canAttack = true; }
+	private void AttackReady() {
+		canAttack = true;
+	}
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.TryGetComponent(out Enemy e))
@@ -44,18 +42,5 @@ public class AttackPlayer : MonoBehaviour
 	private void OnTriggerExit(Collider other) {
 		if (other.TryGetComponent(out Enemy e))
 			enemyList.Remove(e);
-	}
-
-	public void ActivateBulletTime() {
-		isBulletTimeActivated = true;
-		Time.timeScale = 0.1f;
-		Invoke(nameof(DeactivateBulletTime), 3);
-	}
-
-	public void DeactivateBulletTime()
-	{
-		CancelInvoke(nameof(DeactivateBulletTime));
-		isBulletTimeActivated = false;
-		Time.timeScale = 1f;
 	}
 }

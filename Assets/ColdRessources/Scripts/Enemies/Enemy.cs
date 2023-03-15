@@ -62,7 +62,7 @@ public class Enemy: MonoBehaviour
 
 	private void Update()
 	{
-		timeSinceCreation += Time.deltaTime;
+		timeSinceCreation += Time.deltaTime * Time.timeScale;
 		
 		// not on screen anymore
 		if (timeSinceCreation >= screenTime) { Destroy(gameObject); return; }

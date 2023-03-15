@@ -24,7 +24,6 @@ public class WaveManager: MonoBehaviour
 	}
 	
 	public void NextWave() {
-		Debug.Log("Next Wave");
 		if (waveIndex == waves.Length) {
 			Invoke(nameof(Victory), 3);;
 			isPlaying = false;
@@ -57,7 +56,7 @@ public class WaveManager: MonoBehaviour
 	private void WaveUpdate()
 	{
 		Invoke(nameof(WaveUpdate), RefreshRate);
-		timeNeeded = Mathf.Max(timeNeeded - RefreshRate, 0);
+		timeNeeded = Mathf.Max(timeNeeded - RefreshRate * Time.timeScale, 0);
 		if (waitForNextWave) return;
 		if (Time.timeScale == 0) return;
 		if (!isPlaying) return;
@@ -69,10 +68,9 @@ public class WaveManager: MonoBehaviour
 
 	private void Victory()
 	{
-		Debug.Log("Victory	");
 		CancelInvoke(nameof(SpawnEnemy));
 		Time.timeScale = 0;
-		var text = "Victoire\nTon Score :\n" + PlayerPrefs.GetInt("Score");
+		var text = "Victoire\nTon Score :\n" + PlayerPrefs.GetFloat("Score");
 		var label = victoryScreen.transform.Find("VictoryLabel").GetComponent<TMP_Text>();
 		label.text = text;
 		victoryScreen.gameObject.SetActive(true);
