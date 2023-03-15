@@ -12,7 +12,9 @@ public class WaveManager: MonoBehaviour
 	private List<EnemySpawn> currentWave;
 	private int enemyIndex;
 	private bool isPlaying = true;
-	private int timeNeeded;  // the time the last enemy need to spawn
+	private float timeNeeded;  // the time the last enemy need to spawn
+	private bool waitForNextWave;
+	private const float RefreshRate = 1.5f;
 
 	private void Start()
 	{
@@ -22,25 +24,24 @@ public class WaveManager: MonoBehaviour
 	}
 	
 	public void NextWave() {
-		Debug.Log(nameof(NextWave));
-		if (waveIndex >= waves.Length) {
+		Debug.Log("Next Wave");
+		if (waveIndex == waves.Length) {
 			Invoke(nameof(Victory), 3);;
 			isPlaying = false;
 			return;
 		}
 
 		currentWave = waves[waveIndex].enemies.ToList();
-		var waveEnd = 0f;
 		enemyIndex = 0;
 		timeNeeded = 0;
 		currentWave.Sort((x,y) => x.spawnAt.CompareTo(y.spawnAt));
 
 		foreach (EnemySpawn enemy in currentWave) {
-			var deathTime = enemy.screenTime + enemy.spawnAt;
-			if (deathTime > waveEnd) waveEnd = deathTime;
-			if (enemy.spawnAt > timeNeeded) timeNeeded = Mathf.CeilToInt(enemy.spawnAt);
+			if (enemy.spawnAt > timeNeeded) timeNeeded = enemy.spawnAt;
 			Invoke(nameof(SpawnEnemy), enemy.spawnAt);
 		}
+
+		waitForNextWave = false;
 		waveIndex++;
 	}
 
@@ -55,17 +56,20 @@ public class WaveManager: MonoBehaviour
 
 	private void WaveUpdate()
 	{
-		Invoke(nameof(WaveUpdate), 1);
-		timeNeeded -= 1;
+		Invoke(nameof(WaveUpdate), RefreshRate);
+		timeNeeded = Mathf.Max(timeNeeded - RefreshRate, 0);
+		if (waitForNextWave) return;
 		if (Time.timeScale == 0) return;
 		if (!isPlaying) return;
 		if (enemiesContainer.childCount != 0) return;
 		if (timeNeeded != 0) return;
+		waitForNextWave = true;
 		NextWave();
 	}
 
 	private void Victory()
 	{
+		Debug.Log("Victory	");
 		CancelInvoke(nameof(SpawnEnemy));
 		Time.timeScale = 0;
 		var text = "Victoire\nTon Score :\n" + PlayerPrefs.GetInt("Score");

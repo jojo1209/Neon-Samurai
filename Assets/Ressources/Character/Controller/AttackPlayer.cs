@@ -7,7 +7,7 @@ public class AttackPlayer : MonoBehaviour
 	public List<Enemy> enemyList;
 	public float cooldown = 1;
 	[NonSerialized] public bool canAttack;
-	[SerializeField] public AudioSource attaque;
+	[SerializeField] private AudioSource attaque;
 
     private bool isBulletTimeActivated;
 
