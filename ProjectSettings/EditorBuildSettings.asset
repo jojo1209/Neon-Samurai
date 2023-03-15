@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ColdRessources/Scenes/Tests/EnemiesTestScene.unity
     guid: 958dc967c8bb5eb4393779c3435f3c15
+  - enabled: 1
+    path: Assets/ColdRessources/Scenes/Tests/Shop.unity
+    guid: f4e6cc3a65361fb478c2705dae10456f
   m_configObjects: {}

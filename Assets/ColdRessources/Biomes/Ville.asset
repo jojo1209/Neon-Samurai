@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 214c953bce576fb4aadcb2330eab892f, type: 3}
+  m_Name: Ville
+  m_EditorClassIdentifier: 
+  BatBiome:
+  - {fileID: 3961284389724903633, guid: 4ece50de035ce5e4fb60242d55e3fe46, type: 3}
+  - {fileID: 3961284389724903633, guid: 234921762d7b0dd45a9872604f1a7373, type: 3}
+  - {fileID: 3961284389724903633, guid: 2313f3c13e723fd449890724131dced3, type: 3}
+  - {fileID: 3961284389724903633, guid: a936c12087f58b34c89f2b06221d78c3, type: 3}
+  repetition: 4
