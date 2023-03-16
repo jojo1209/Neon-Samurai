@@ -136,24 +136,10 @@ MonoBehaviour:
   nbConsecutiveShot: 5
   cdBetweenShots: 0.3
   numberOfShot: 3
-  bulletTimeToLive: 3
+  bulletTimeToLive: 5
   bulletSpeedMultiplier: 1
-  laser: {fileID: 1974575634}
-  value: 10
-  xMovement:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  yMovement:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  screenTime: 1000
-  timeSinceCreation: 0
+  laserSound: {fileID: 1974575634}
+  scoreValue: 10
 --- !u!82 &1974575634
 AudioSource:
   m_ObjectHideFlags: 0

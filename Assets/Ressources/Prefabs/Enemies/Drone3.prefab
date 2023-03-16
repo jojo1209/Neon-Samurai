@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277709874991412279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 1.75}
+  m_LocalPosition: {x: 2, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -86,7 +86,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342428898809546193}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 1.75}
+  m_LocalPosition: {x: -2, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -158,28 +158,14 @@ MonoBehaviour:
   bulletPrefab: {fileID: 9066780579838665247, guid: 1389d4e316d823742b10d44e7b043b73,
     type: 3}
   startShootingAt: 1
-  cooldown: 3
+  cooldown: 2
   nbConsecutiveShot: 2
   cdBetweenShots: 0.3
   numberOfShot: 3
   bulletTimeToLive: 3
   bulletSpeedMultiplier: 1
-  laser: {fileID: 1909632744}
-  value: 10
-  xMovement:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  yMovement:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  screenTime: 1000
-  timeSinceCreation: 0
+  laserSound: {fileID: 1909632744}
+  scoreValue: 10
 --- !u!82 &1909632744
 AudioSource:
   m_ObjectHideFlags: 0
