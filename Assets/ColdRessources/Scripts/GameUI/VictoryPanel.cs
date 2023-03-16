@@ -6,7 +6,7 @@ public class VictoryPanel: MonoBehaviour
 {
 	private void Start()
 	{
-		Button mainMenuButton = transform.Find("MAinMenuButton").GetComponent<Button>();
+		Button mainMenuButton = transform.Find("MainMenuButton").GetComponent<Button>();
 		mainMenuButton.onClick.AddListener(() => { SceneManager.LoadScene("Game"); });
 	}
 }
