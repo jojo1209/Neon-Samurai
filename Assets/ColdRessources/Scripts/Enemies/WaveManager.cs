@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -20,10 +21,9 @@ public class WaveManager: MonoBehaviour
 	{
 		waveIndex = 0;
 		currentWave = new List<EnemySpawn>();
-		WaveUpdate();
 	}
-	
-	public void NextWave() {
+
+	private void NextWave() {
 		if (waveIndex == waves.Length) {
 			Invoke(nameof(Victory), 3);;
 			isPlaying = false;
@@ -53,15 +53,11 @@ public class WaveManager: MonoBehaviour
 		instance.screenTime = enemy.screenTime;
 	}
 
-	private void WaveUpdate()
+	private void Update()
 	{
-		Invoke(nameof(WaveUpdate), RefreshRate);
-		timeNeeded = Mathf.Max(timeNeeded - RefreshRate * Time.timeScale, 0);
-		if (waitForNextWave) return;
-		if (Time.timeScale == 0) return;
-		if (!isPlaying) return;
-		if (enemiesContainer.childCount != 0) return;
-		if (timeNeeded != 0) return;
+		timeNeeded = Mathf.Max(timeNeeded - Time.deltaTime * Time.timeScale, 0);
+		var dontCare = waitForNextWave || Time.timeScale == 0 || !isPlaying || enemiesContainer.childCount != 0 || timeNeeded != 0;
+		if (dontCare) return;
 		waitForNextWave = true;
 		NextWave();
 	}
@@ -70,8 +66,8 @@ public class WaveManager: MonoBehaviour
 	{
 		CancelInvoke(nameof(SpawnEnemy));
 		Time.timeScale = 0;
-		var text = "Victoire\nTon Score :\n" + PlayerPrefs.GetFloat("Score");
-		var label = victoryScreen.transform.Find("VictoryLabel").GetComponent<TMP_Text>();
+		var text = $"Victoire\nTon Score :\n{(int)PlayerPrefs.GetFloat("Score")}";
+		TMP_Text label = victoryScreen.transform.Find("VictoryLabel").GetComponent<TMP_Text>();
 		label.text = text;
 		victoryScreen.gameObject.SetActive(true);
 	}
