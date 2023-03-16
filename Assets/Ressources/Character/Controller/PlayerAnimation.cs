@@ -1,18 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerAnimation : MonoBehaviour
 {
-   public Animator Player_Anim;
+   public Animator playerAnim;
+   private static readonly int IsAttacking = Animator.StringToHash("IsAttacking");
+   private static readonly int IsDead = Animator.StringToHash("IsDead");
 
    public void OnAttack()
    {
-      Player_Anim.SetTrigger("IsAttacking");
+      playerAnim.SetTrigger(IsAttacking);
    }
    public void OnDead()
    {
-      Player_Anim.SetTrigger("IsDead");
+      playerAnim.SetTrigger(IsDead);
    }
 }

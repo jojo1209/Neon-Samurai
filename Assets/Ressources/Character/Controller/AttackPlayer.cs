@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class AttackPlayer : MonoBehaviour
 {
-	public List<Enemy> enemyList;
 	public float cooldown = 1;
-	[NonSerialized] public bool canAttack;
-	[SerializeField] private AudioSource attaque;
 	[SerializeField] private PlayerAnimation playerAnimation;
+	private AudioSource attackSound;
+	private List<Enemy> enemyList;
+	private bool canAttack;
 
 	private void Start()
 	{
         canAttack = true;
+		enemyList = new List<Enemy>();
+		attackSound = GetComponent<AudioSource>();
 	}
 
 	private void Update()
@@ -25,12 +27,12 @@ public class AttackPlayer : MonoBehaviour
 		if(enemyList.Count <= 0) return;
 		enemyList[0].Die();
 		enemyList.RemoveAt(0);
-		// play sound
-		attaque.Play();
-		// play animation
-		playerAnimation.OnAttack();
 		canAttack = false;
 		Invoke(nameof(AttackReady), cooldown);
+		// play animation
+		playerAnimation.OnAttack();
+		// play sound
+		attackSound.Play();
 	}
 
 
