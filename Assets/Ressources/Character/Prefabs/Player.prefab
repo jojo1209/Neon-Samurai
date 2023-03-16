@@ -158,6 +158,7 @@ MonoBehaviour:
   enemyList: []
   cooldown: 1
   attaque: {fileID: 1836026388}
+  playerAnimation: {fileID: 6845165366455690415}
 --- !u!1 &141635327803910887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,6 +1496,7 @@ GameObject:
   - component: {fileID: 1815192031}
   - component: {fileID: 1815192033}
   - component: {fileID: 1815192032}
+  - component: {fileID: 6845165366455690415}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1509,7 +1511,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7165328418607872986}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 32, y: 32, z: 32}
   m_ConstrainProportionsScale: 1
@@ -1518,7 +1520,7 @@ Transform:
   - {fileID: 1645909297}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &7500525398684273425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1574,6 +1576,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6845165366455690415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165328418607872986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6659c5eedee3db24aa8df9254cb4d261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player_Anim: {fileID: 2142180507}
 --- !u!1 &7911152568570655581
 GameObject:
   m_ObjectHideFlags: 0

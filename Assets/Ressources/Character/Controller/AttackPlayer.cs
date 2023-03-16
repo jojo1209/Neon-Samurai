@@ -28,7 +28,7 @@ public class AttackPlayer : MonoBehaviour
 		// play sound
 		attaque.Play();
 		// play animation
-		anim_Attack.OnAttack();
+		playerAnimation.OnAttack();
 		canAttack = false;
 		Invoke(nameof(AttackReady), cooldown);
 	}
