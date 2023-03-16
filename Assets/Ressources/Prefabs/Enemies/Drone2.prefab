@@ -139,7 +139,7 @@ MonoBehaviour:
   bulletTimeToLive: 5
   bulletSpeedMultiplier: 1
   laserSound: {fileID: 1974575634}
-  scoreValue: 10
+  scoreValue: 25
 --- !u!82 &1974575634
 AudioSource:
   m_ObjectHideFlags: 0
