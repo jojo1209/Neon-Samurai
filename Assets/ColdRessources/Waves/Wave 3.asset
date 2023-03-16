@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a5004343ba14a4eb16ebd3694e65093, type: 3}
-  m_Name: Wave 1
+  m_Name: Wave 3
   m_EditorClassIdentifier: 
   enemies:
   - enemyPrefab: {fileID: 1626699353, guid: 2e616362d92f20d4c8dcf0084e8c12de, type: 3}
@@ -21,22 +21,22 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.1
-        inSlope: -Infinity
-        outSlope: -Infinity
-        tangentMode: 0
+        value: 0.2
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.1
+        value: 0.2
         inSlope: 0
         outSlope: 0
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.9
+        value: 0.8
         inSlope: 0
         outSlope: 0
         tangentMode: 34
@@ -183,7 +183,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.9
+        value: 0.8
         inSlope: 0
         outSlope: 0
         tangentMode: 34
@@ -219,7 +219,7 @@ MonoBehaviour:
       m_RotationOrder: 0
   - enemyPrefab: {fileID: 1328743478, guid: 29cb36274e7e79449ab3ecdab1a73267, type: 3}
     spawnAt: 5.5
-    screenTime: 11
+    screenTime: 10
     xMovement:
       serializedVersion: 2
       m_Curve:
@@ -250,35 +250,137 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: -5.5
-        outSlope: -5.5
+        inSlope: -1.4132544
+        outSlope: -1.4132544
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.7131591
+      - serializedVersion: 3
+        time: 0.1
+        value: 0.5
+        inSlope: -0.64145887
+        outSlope: 0
+        tangentMode: 65
+        weightedMode: 0
+        inWeight: 0.94844174
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.9
+        value: 0.5
+        inSlope: -0
+        outSlope: -0.48433235
+        tangentMode: 5
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 1
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -2.0878317
+        outSlope: -2.0878317
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.57932127
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+  - enemyPrefab: {fileID: 468664270, guid: d00efb6d5581e16429d5874a2d1a87b2, type: 3}
+    spawnAt: 6.5
+    screenTime: 6.8
+    xMovement:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: -0.5
+        outSlope: -0.5
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.09090909
+        time: 1
         value: 0.5
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
+        inSlope: -0.5
+        outSlope: -0.5
+        tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    yMovement:
+      serializedVersion: 2
+      m_Curve:
       - serializedVersion: 3
-        time: 0.90909094
-        value: 0.5
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
+        time: 0
+        value: 1
+        inSlope: -1
+        outSlope: -1
+        tangentMode: 34
         weightedMode: 0
-        inWeight: 0.33333334
+        inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
         value: 0
-        inSlope: -5.5000014
-        outSlope: -5.5000014
+        inSlope: -1
+        outSlope: -1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+  - enemyPrefab: {fileID: 468664270, guid: d00efb6d5581e16429d5874a2d1a87b2, type: 3}
+    spawnAt: 6.5
+    screenTime: 6.8
+    xMovement:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.5
+        outSlope: 0.5
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.5
+        inSlope: 0.5
+        outSlope: 0.5
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    yMovement:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: -1
+        outSlope: -1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: -1
+        outSlope: -1
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
