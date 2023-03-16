@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Enemy: MonoBehaviour
 {
@@ -13,22 +15,23 @@ public class Enemy: MonoBehaviour
 	[SerializeField] private int numberOfShot;
 	[SerializeField] private float bulletTimeToLive;
 	[SerializeField] private float bulletSpeedMultiplier;
-    [SerializeField] private AudioSource laser;
+    [SerializeField] private AudioSource laserSound;
+	private List<Transform> cannons;
 
     [Space]
 	[Header("Score")]
 	[SerializeField] [Tooltip("The score increment when the player kills it")]
-	private int value = 10;
-	private List<Transform> cannons;
+	private int scoreValue = 10;
+	
 	// movement mechanic
-	public AnimationCurve xMovement;
-	public AnimationCurve yMovement;
-	public float screenTime;
-	public float timeSinceCreation;
+	[NonSerialized] public AnimationCurve xMovement;
+	[NonSerialized] public AnimationCurve yMovement;
+	[NonSerialized] public float screenTime;
+	private float timeSinceCreation;
 
 	private void Start()
 	{
-		laser.playOnAwake = false;
+		laserSound.playOnAwake = false;
         cannons = new List<Transform>();
 		for (var i = 0; i < cannonsTransform.childCount; i++) cannons.Add(cannonsTransform.GetChild(i));
 		InvokeRepeating(nameof(StartShooting), startShootingAt, cooldown + nbConsecutiveShot * cdBetweenShots);
@@ -47,11 +50,9 @@ public class Enemy: MonoBehaviour
 		CancelInvoke(nameof(StartShooting));
 	}
 
-	private void Shoot()
-	{
-        laser.Play();
-        foreach (Transform cannon in cannons)
-		{
+	private void Shoot() {
+        laserSound.Play();
+        foreach (Transform cannon in cannons) {
 			Bullet bullet = Instantiate(bulletPrefab);
 			bullet.transform.position = cannon.position;
 			bullet.transform.rotation = cannon.rotation;
@@ -65,7 +66,10 @@ public class Enemy: MonoBehaviour
 		timeSinceCreation += Time.deltaTime * Time.timeScale;
 		
 		// not on screen anymore
-		if (timeSinceCreation >= screenTime) { Destroy(gameObject); return; }
+		if (timeSinceCreation >= screenTime) {
+			Destroy(gameObject);
+			return;
+		}
 		
 		// update position
 		var x = xMovement.Evaluate(timeSinceCreation / screenTime);
@@ -73,17 +77,15 @@ public class Enemy: MonoBehaviour
 		transform.position = Camera.main.ViewportToWorldPoint(new Vector2(x, y));
 	}
 
-	public void Die()
-	{
+	public void Die() {
 		// Update score
 		var score = PlayerPrefs.GetFloat("Score");
-		PlayerPrefs.SetFloat("Score", score + value);
+		PlayerPrefs.SetFloat("Score", score + scoreValue);
 		// Death
 		Destroy(gameObject);
 	}
 
-	private void OnDestroy()
-	{
+	private void OnDestroy() {
 		CancelInvoke(nameof(StopShooting));
 		StopShooting();
 		CancelInvoke(nameof(Shoot));

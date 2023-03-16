@@ -13,7 +13,6 @@ public class WaveManager: MonoBehaviour
 	private List<EnemySpawn> currentWave;
 	private int enemyIndex;
 	private bool isPlaying = true;
-	private float timeNeeded;  // the time the last enemy need to spawn
 	private bool waitForNextWave;
 	private const float RefreshRate = 1.5f;
 
@@ -32,11 +31,9 @@ public class WaveManager: MonoBehaviour
 
 		currentWave = waves[waveIndex].enemies.ToList();
 		enemyIndex = 0;
-		timeNeeded = 0;
 		currentWave.Sort((x,y) => x.spawnAt.CompareTo(y.spawnAt));
 
 		foreach (EnemySpawn enemy in currentWave) {
-			if (enemy.spawnAt > timeNeeded) timeNeeded = enemy.spawnAt;
 			Invoke(nameof(SpawnEnemy), enemy.spawnAt);
 		}
 
@@ -55,8 +52,7 @@ public class WaveManager: MonoBehaviour
 
 	private void Update()
 	{
-		timeNeeded = Mathf.Max(timeNeeded - Time.deltaTime * Time.timeScale, 0);
-		var dontCare = waitForNextWave || Time.timeScale == 0 || !isPlaying || enemiesContainer.childCount != 0 || timeNeeded != 0;
+		var dontCare = waitForNextWave || Time.timeScale == 0 || !isPlaying || enemiesContainer.childCount != 0 || currentWave.Count != enemyIndex;
 		if (dontCare) return;
 		waitForNextWave = true;
 		NextWave();

@@ -155,9 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa369f2b2123b3e4184e8f0d25d341eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyList: []
   cooldown: 1
-  attaque: {fileID: 1836026388}
   playerAnimation: {fileID: 6845165366455690415}
 --- !u!1 &141635327803910887
 GameObject:
@@ -942,7 +940,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3756459801170721415}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -951,7 +949,7 @@ Transform:
   - {fileID: 439382375635564336}
   m_Father: {fileID: 7165328418607872996}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!95 &2142180507
 Animator:
   serializedVersion: 4
@@ -961,11 +959,11 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3756459801170721415}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 4a0f1f4dfad71ef468b4d9fef084ed2a, type: 3}
   m_Controller: {fileID: 9100000, guid: d2b21df104c150f4e89d59726aa8223e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1588,7 +1586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6659c5eedee3db24aa8df9254cb4d261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player_Anim: {fileID: 2142180507}
+  playerAnim: {fileID: 2142180507}
 --- !u!1 &7911152568570655581
 GameObject:
   m_ObjectHideFlags: 0
