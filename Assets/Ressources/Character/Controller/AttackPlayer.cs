@@ -8,7 +8,7 @@ public class AttackPlayer : MonoBehaviour
 	public float cooldown = 1;
 	[NonSerialized] public bool canAttack;
 	[SerializeField] private AudioSource attaque;
-	SerializeField] private PlayerAnimation playerAnimation;
+	[SerializeField] private PlayerAnimation playerAnimation;
 
 	private void Start()
 	{
@@ -23,11 +23,13 @@ public class AttackPlayer : MonoBehaviour
 	private void Attack()  {
 		if(!canAttack) return;
 		if(enemyList.Count <= 0) return;
-		attaque.Play();
-        enemyList[0].Die();
+		enemyList[0].Die();
 		enemyList.RemoveAt(0);
+		// play sound
+		attaque.Play();
+		// play animation
+		anim_Attack.OnAttack();
 		canAttack = false;
-		// todo play animation
 		Invoke(nameof(AttackReady), cooldown);
 	}
 
