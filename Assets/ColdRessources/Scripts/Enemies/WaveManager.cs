@@ -55,7 +55,7 @@ public class WaveManager: MonoBehaviour
 		var dontCare = waitForNextWave || Time.timeScale == 0 || !isPlaying || enemiesContainer.childCount != 0 || currentWave.Count != enemyIndex;
 		if (dontCare) return;
 		waitForNextWave = true;
-		NextWave();
+		Invoke(nameof(NextWave), 2);
 	}
 
 	private void Victory()
