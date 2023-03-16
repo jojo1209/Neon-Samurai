@@ -15,7 +15,7 @@ MonoBehaviour:
   enemies:
   - enemyPrefab: {fileID: 468664270, guid: d00efb6d5581e16429d5874a2d1a87b2, type: 3}
     spawnAt: 0
-    screenTime: 8
+    screenTime: 2
     xMovement:
       serializedVersion: 2
       m_Curve:

@@ -8,6 +8,7 @@ public class AttackPlayer : MonoBehaviour
 	public float cooldown = 1;
 	[NonSerialized] public bool canAttack;
 	[SerializeField] private AudioSource attaque;
+	// todo [SerializeField] private PlayerAnimation playerAnimation;
 
 	private void Start()
 	{
@@ -26,6 +27,7 @@ public class AttackPlayer : MonoBehaviour
         enemyList[0].Die();
 		enemyList.RemoveAt(0);
 		canAttack = false;
+		// todo play animation
 		Invoke(nameof(AttackReady), cooldown);
 	}
 

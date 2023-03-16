@@ -70,7 +70,7 @@ public class Enemy: MonoBehaviour
 		// update position
 		var x = xMovement.Evaluate(timeSinceCreation / screenTime);
 		var y = yMovement.Evaluate(timeSinceCreation / screenTime);
-		transform.position = Camera.main.ViewportToScreenPoint(new Vector2(x, y));
+		transform.position = Camera.main.ViewportToWorldPoint(new Vector2(x, y));
 	}
 
 	public void Die()
