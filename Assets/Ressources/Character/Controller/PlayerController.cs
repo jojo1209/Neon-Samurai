@@ -2,10 +2,16 @@ using UnityEngine;
 
 public class PlayerController: MonoBehaviour
 {
-	public FixedJoystick joystick;
-	public Rigidbody myRigidbody;
-	public float speed = 20f;
+	public FloatingJoystick  joystick;
+	private Rigidbody myRigidbody;
+	public float speed = 800f;
 
+	private void Start()
+	{
+		myRigidbody = GetComponent<Rigidbody>();
+		myRigidbody.isKinematic = false;
+	}
+	
 	private void Update()
 	{
 		myRigidbody.velocity = new Vector3(

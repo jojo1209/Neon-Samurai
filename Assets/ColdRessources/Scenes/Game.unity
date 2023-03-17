@@ -174,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 116377365696595972, guid: ec3744fd6f497c444bcff111e2f130c8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 116377365696595972, guid: ec3744fd6f497c444bcff111e2f130c8,
         type: 3}
@@ -324,7 +324,7 @@ PrefabInstance:
     - target: {fileID: 6623629222441377385, guid: 33942a001aa8faf49a8b2cda8ecb9a86,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6623629222441377385, guid: 33942a001aa8faf49a8b2cda8ecb9a86,
         type: 3}
@@ -681,7 +681,7 @@ PrefabInstance:
     - target: {fileID: 3281333318806924659, guid: 7d5fef854b9fc0d4199e810db57e5d2b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3281333318806924659, guid: 7d5fef854b9fc0d4199e810db57e5d2b,
         type: 3}
@@ -1451,6 +1451,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingsData: {fileID: 11400000, guid: 8894e72bea3cd8142b3dd513fb5133c9, type: 2}
   player: {fileID: 169325887}
+  joystickPrefab: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18,
+    type: 3}
+  ui: {fileID: 1240807868}
 --- !u!4 &2063549916
 Transform:
   m_ObjectHideFlags: 0

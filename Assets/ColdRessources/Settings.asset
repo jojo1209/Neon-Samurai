@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222e8f7afcf641d3a60c32154f72031a, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  useJoystick: 0
+  useJoystick: 1
