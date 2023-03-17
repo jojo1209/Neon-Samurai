@@ -298,6 +298,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec3744fd6f497c444bcff111e2f130c8, type: 3}
+--- !u!1 &169325887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7165328418607872986, guid: 207a3efe5ea04484db81468bdca97dd1,
+    type: 3}
+  m_PrefabInstance: {fileID: 727248123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &436422388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -815,7 +821,7 @@ GameObject:
   - component: {fileID: 1240807867}
   - component: {fileID: 1240807866}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1443,6 +1449,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf50cdda98a96d4196afe574f49dfe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsData: {fileID: 11400000, guid: 8894e72bea3cd8142b3dd513fb5133c9, type: 2}
+  player: {fileID: 169325887}
 --- !u!4 &2063549916
 Transform:
   m_ObjectHideFlags: 0
