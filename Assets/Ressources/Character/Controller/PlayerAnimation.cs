@@ -12,6 +12,7 @@ public class PlayerAnimation: MonoBehaviour
 	public void Update()
 	{
 		if (!goVFX) return;
+
 		time += Time.deltaTime;
 		vfx.SetActive(true);
 
