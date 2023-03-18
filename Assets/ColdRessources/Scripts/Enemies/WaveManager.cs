@@ -4,20 +4,17 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 
-public class WaveManager: MonoBehaviour
-{
+public class WaveManager: MonoBehaviour {
 	public Transform enemiesContainer;
 	[SerializeField] private Wave[] waves;
 	[SerializeField] private CanvasRenderer victoryScreen;
 	private int waveIndex;
 	private List<EnemySpawn> currentWave;
 	private int enemyIndex;
-	private bool isPlaying = true;
 	private bool waitForNextWave;
 	private const float RefreshRate = 1.5f;
 
-	private void Start()
-	{
+	private void Start() {
 		waveIndex = 0;
 		currentWave = new List<EnemySpawn>();
 	}
@@ -25,7 +22,6 @@ public class WaveManager: MonoBehaviour
 	private void NextWave() {
 		if (waveIndex == waves.Length) {
 			Invoke(nameof(Victory), 3);;
-			isPlaying = false;
 			return;
 		}
 
@@ -42,24 +38,25 @@ public class WaveManager: MonoBehaviour
 	}
 
 	public void SpawnEnemy() {
+		// retrieve the enemy that need to spawn
 		EnemySpawn enemy = currentWave[enemyIndex];
-		enemyIndex++;
+		enemyIndex++;  // prepare the next spawn
+
+		// create the enemy
 		Enemy instance = Instantiate(enemy.enemyPrefab, enemiesContainer);
 		instance.xMovement = enemy.xMovement;
 		instance.yMovement = enemy.yMovement;
 		instance.screenTime = enemy.screenTime;
 	}
 
-	private void Update()
-	{
-		var dontCare = waitForNextWave || Time.timeScale == 0 || !isPlaying || enemiesContainer.childCount != 0 || currentWave.Count != enemyIndex;
+	private void Update() {
+		var dontCare = waitForNextWave || Time.timeScale == 0 || enemiesContainer.childCount != 0 || currentWave.Count != enemyIndex;
 		if (dontCare) return;
 		waitForNextWave = true;
 		Invoke(nameof(NextWave), 2);
 	}
 
-	private void Victory()
-	{
+	private void Victory() {
 		CancelInvoke(nameof(SpawnEnemy));
 		Time.timeScale = 0;
 		var text = $"Victoire\nTon Score :\n{(int)PlayerPrefs.GetFloat("Score")}";

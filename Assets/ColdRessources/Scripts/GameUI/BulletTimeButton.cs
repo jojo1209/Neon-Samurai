@@ -35,13 +35,11 @@ public class BulletTimeButton: MonoBehaviour {
 	}
 
 	public void StopBulletTime() {
-		Debug.Log("miaou");
 		if (Time.timeScale != 0)
 			Time.timeScale = 1;
 	}
 
 	private void ActivateButton() {
-		Debug.Log("i was there");
 		wasActivated = false;
 		timeElapsedSinceActivation = 0;
 		slider.gameObject.SetActive(false);

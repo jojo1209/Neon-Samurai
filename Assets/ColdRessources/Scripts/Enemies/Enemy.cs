@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Enemy: MonoBehaviour
-{
+public class Enemy: MonoBehaviour {
 	[Header("Shoot mechanic")]
 	[SerializeField] private Transform cannonsTransform;
 	[SerializeField] private Bullet bulletPrefab;
@@ -29,24 +28,22 @@ public class Enemy: MonoBehaviour
 	[NonSerialized] public float screenTime;
 	private float timeSinceCreation;
 
-	private void Start()
-	{
+	private void Start() {
 		laserSound.playOnAwake = false;
         cannons = new List<Transform>();
-		for (var i = 0; i < cannonsTransform.childCount; i++) cannons.Add(cannonsTransform.GetChild(i));
+		for (var i = 0; i < cannonsTransform.childCount; i++)
+			cannons.Add(cannonsTransform.GetChild(i));
 		InvokeRepeating(nameof(StartShooting), startShootingAt, cooldown + nbConsecutiveShot * cdBetweenShots);
 		Invoke(nameof(StopShooting), startShootingAt + numberOfShot * cooldown);
 	}
 
-	private void StartShooting()
-	{
+	private void StartShooting() {
 		for (int i = 0; i < nbConsecutiveShot; i++)
 			Invoke(nameof(Shoot), i * cdBetweenShots);
         
     }
 
-	private void StopShooting()
-	{
+	private void StopShooting() {
 		CancelInvoke(nameof(StartShooting));
 	}
 
@@ -61,8 +58,7 @@ public class Enemy: MonoBehaviour
 		}
 	}
 
-	private void Update()
-	{
+	private void Update() {
 		timeSinceCreation += Time.deltaTime * Time.timeScale;
 		
 		// not on screen anymore
@@ -70,7 +66,7 @@ public class Enemy: MonoBehaviour
 			Destroy(gameObject);
 			return;
 		}
-		
+
 		// update position
 		var x = xMovement.Evaluate(timeSinceCreation / screenTime);
 		var y = yMovement.Evaluate(timeSinceCreation / screenTime);
@@ -86,8 +82,8 @@ public class Enemy: MonoBehaviour
 	}
 
 	private void OnDestroy() {
+		CancelInvoke(nameof(Shoot));
 		CancelInvoke(nameof(StopShooting));
 		StopShooting();
-		CancelInvoke(nameof(Shoot));
 	}
 }

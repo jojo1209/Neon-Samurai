@@ -18,5 +18,7 @@ public class GameManager: MonoBehaviour
 		}
 		else
 			player.AddComponent<PlayerMouvements>();
+		// the game manager is useless afterwards but it's gameobject is necessary
+		Destroy(this);
 	}
 }

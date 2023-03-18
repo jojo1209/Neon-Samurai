@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class MapController : MonoBehaviour
-{
+public class MapController : MonoBehaviour {
     public List<MapBiome> mapBiomes;
-
     private List<GameObject> bats;
 
     int indexBiome = 0;
@@ -15,14 +13,11 @@ public class MapController : MonoBehaviour
     public int batY = 16;
     public int scale=1;
 
-
-
     int batDown = 0;
     int batUp = 0;
     int centreBat;
 
     int repetition;
-
 
     int batn = 4;
     int batnn = 4;
@@ -31,8 +26,7 @@ public class MapController : MonoBehaviour
 
     private bool changeBiom = false;
 
-    private void Awake()
-    {
+    private void Awake() {
         batY = batY * scale;
         bats = new List<GameObject>();
 
@@ -46,23 +40,16 @@ public class MapController : MonoBehaviour
         batnn = batn = mapBiomes[indexBiome].BatBiome.Length;
 
         repetition = mapBiomes[indexBiome].repetition;
-
-
     }
 
     void Start()
     {
-
-
-
         for (int i = 0; i < batn; i++)
         {
             bats[i].transform.localPosition = new Vector3(720, i * batY, 0);
         }
         batDown = 0;
         batUp = batn - 1;
-
-
     }
 
     void changementBiom()
@@ -133,9 +120,6 @@ public class MapController : MonoBehaviour
             }
 
         }
-
-
-
     }
 
 

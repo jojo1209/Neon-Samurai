@@ -14,23 +14,21 @@ public class GameObjectPool
 
 	private Queue<GameObject> objects = new Queue<GameObject>();
 
-	private void Awake()
-	{
+	private void Awake() {
 		Expand(minSize);
 	}
-	public GameObject GetGameObject()
-	{
+
+	public GameObject GetGameObject() {
 		if (objects.Count == 0) Expand(1);
 		return objects.Dequeue();
 	}
-	public void ReturnGameObject(GameObject go)
-	{
+
+	public void ReturnGameObject(GameObject go) {
 		objects.Enqueue(go);
 	}
-	public void Expand(int number)
-	{
-		for (int i = 0; i < number; i++)
-		{
+
+	public void Expand(int number) {
+		for (int i = 0; i < number; i++) {
 			GameObject go = UnityEngine.Object.Instantiate(prefab);
 			go.SetActive(false);
 			objects.Enqueue(go);
