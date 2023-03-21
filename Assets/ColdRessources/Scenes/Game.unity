@@ -686,7 +686,7 @@ PrefabInstance:
     - target: {fileID: 3281333318806924658, guid: 7d5fef854b9fc0d4199e810db57e5d2b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3281333318806924659, guid: 7d5fef854b9fc0d4199e810db57e5d2b,
         type: 3}
@@ -792,6 +792,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3281333319138428041, guid: 7d5fef854b9fc0d4199e810db57e5d2b,
+        type: 3}
+      propertyPath: m_text
+      value: "Vous \xEAtes Mort(e)"
       objectReference: {fileID: 0}
     - target: {fileID: 4959205144427362923, guid: 7d5fef854b9fc0d4199e810db57e5d2b,
         type: 3}

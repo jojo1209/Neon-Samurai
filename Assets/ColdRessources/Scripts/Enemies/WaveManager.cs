@@ -58,7 +58,7 @@ public class WaveManager: MonoBehaviour {
 	private void Victory() {
 		CancelInvoke(nameof(SpawnEnemy));
 		Time.timeScale = 0;
-		var text = $"Victoire\nTon Score :\n{(int)PlayerPrefs.GetFloat("Score")}";
+		var text = $"Victoire\nVotre Score :\n{(int)PlayerPrefs.GetFloat("Score")}";
 		TMP_Text label = victoryScreen.transform.Find("VictoryLabel").GetComponent<TMP_Text>();
 		label.text = text;
 		victoryScreen.gameObject.SetActive(true);
