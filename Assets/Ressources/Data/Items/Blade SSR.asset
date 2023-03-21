@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f327b1c733b5e5c4d976644a8a5183fe, type: 3}
-  m_Name: Inventory
+  m_Script: {fileID: 11500000, guid: 00a42b54dc1949629d43be7a68b4a2f3, type: 3}
+  m_Name: Blade SSR
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: 5dccfc71614a3a54d9db7b40d1f2fac6, type: 2}
-  - {fileID: 11400000, guid: 39f878b5d9b91f14784807a3af0879ab, type: 2}
-  coins: 725
-  gems: 50
+  itemName: Blade SSR
+  sprite: {fileID: 21300000, guid: 0b177482f7f11494ca29ea0797196fbf, type: 3}
+  spriteRotation: -60
+  coinCost: 400
+  gemCost: 200
+  quantity: 1
+  rarity: 0

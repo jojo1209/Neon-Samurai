@@ -1,62 +1,72 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class ShopManager : MonoBehaviour {
+public class ShopManager: MonoBehaviour {
+	[SerializeField] private TMP_Text coinsTxt;
+	[SerializeField] private TMP_Text gemsTxt;
+	[SerializeField] private InventoryData inventoryData;
+	[SerializeField] private Item itemPrefab;
+	[SerializeField] private VerticalLayoutGroup itemsContainer;
+	private List<Item> items;
 
-    public int[,] shopItem = new int[5, 5];
-    public TMP_Text CoinsTXT;
-    public TMP_Text GemsTXT;
-    public InventoryData inv;
+	private void Awake() {
+		items = new List<Item>();
+	}
+	
+	private void Start() {
+		for (int i = 0; i < inventoryData.items.Count; i++) {
+			// create an item instance
+			Item item = Instantiate(itemPrefab, itemsContainer.transform);
+			
+			// set item data (it will create itself from it in its Start method)
+			ItemData itemData = inventoryData.items[i];
+			item.itemData = itemData;
+			
+			// add event on click
+			var itemId = i;
+			item.GetComponent<Button>().onClick.AddListener(() => Buy(itemId));
+			
+			// register the item in the item list
+			items.Add(item);
+		}
+		
+		// update currency text
+		UpdateCoin();
+		UpdateGems();
+	}
 
-    private void Start() {
-        CoinsTXT.text = "     " + inv.coins.ToString();
-        GemsTXT.text = "     " + inv.gems.ToString();
+	public void Buy(int itemId)
+	{
+		// retrieve the cost of the item
+		var coinCost = inventoryData.items[itemId].coinCost;
+		var gemCost = inventoryData.items[itemId].gemCost;
+		
+		// verify if we can pay it
+		var canPayWithCoins = inventoryData.coins >= coinCost;
+		var canPay = canPayWithCoins || inventoryData.gems >= gemCost;;
 
-        //ID
-        shopItem[1, 1] = 1;
-        shopItem[1, 2] = 2;
-        shopItem[1, 3] = 3;
+		// if we can't, just ignore the transaction
+		if (!canPay) return;
+		
+		// increment the item count
+		inventoryData.items[itemId].quantity++;
 
-        //Price
-        shopItem[2, 1] = 400;
-        shopItem[2, 2] = 200;
-        shopItem[2, 3] = 50;
+		// decrease the currency used
+		if (canPayWithCoins) {
+			inventoryData.coins -= coinCost;
+			UpdateCoin();
+		}
+		else {
+			inventoryData.gems -= gemCost;
+			UpdateGems();
+		}
+		
+		// update the quantity text
+		items[itemId].UpdateQuantity();
+	}
 
-        //Quantity
-        shopItem[3, 1] = inv.item1;
-        shopItem[3, 2] = inv.item2;
-        shopItem[3, 3] = inv.item3;
-
-        //Price Gem
-        shopItem[4, 1] = 15;
-        shopItem[4, 2] = 10;
-        shopItem[4, 3] = 5;
-    }
-
-    void Update() {
-        inv.item1 = shopItem[3, 1];
-        inv.item2 = shopItem[3, 2];
-        inv.item3 = shopItem[3, 3];
-    }
-
-    public void Buy()  {
-        GameObject ButtonRef = GameObject.FindGameObjectWithTag("Event").GetComponent<EventSystem>().currentSelectedGameObject;
-
-        if (inv.coins >= shopItem[2, ButtonRef.GetComponent<ButtonInfo>().ItemID]) {
-            inv.coins -= shopItem[2, ButtonRef.GetComponent<ButtonInfo>().ItemID];
-            shopItem[3, ButtonRef.GetComponent<ButtonInfo>().ItemID]++;
-            CoinsTXT.text = "     " + inv.coins.ToString();
-            ButtonRef.GetComponent<ButtonInfo>().QuantityTxt.text = shopItem[3, ButtonRef.GetComponent<ButtonInfo>().ItemID].ToString();
-        }
-        else if (inv.gems >= shopItem[4, ButtonRef.GetComponent<ButtonInfo>().ItemID]) {
-            inv.gems -= shopItem[4, ButtonRef.GetComponent<ButtonInfo>().ItemID];
-            shopItem[3, ButtonRef.GetComponent<ButtonInfo>().ItemID]++;
-            GemsTXT.text = "     " + inv.gems.ToString();
-            ButtonRef.GetComponent<ButtonInfo>().QuantityTxt.text = shopItem[3, ButtonRef.GetComponent<ButtonInfo>().ItemID].ToString();
-        }
-    }
+	private void UpdateCoin() { coinsTxt.text = $"     {inventoryData.coins}"; }
+	private void UpdateGems() { gemsTxt.text = $"     {inventoryData.gems}"; }
 }

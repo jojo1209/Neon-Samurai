@@ -1,15 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class InventoryData : ScriptableObject
-{
-    public int item1;
-    public int item2;
-    public int item3;
-
-
-    public float coins;
-    public float gems;
+[CreateAssetMenu(fileName="Inventory", menuName="Project/Inventory")]
+public class InventoryData : ScriptableObject {
+    public List<ItemData> items;
+    public int coins;
+    public int gems;
 }
