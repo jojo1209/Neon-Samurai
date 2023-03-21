@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackPlayer : MonoBehaviour
 {
-	public float cooldown = 1;
+	public float cooldown = 0.75f;
 	[SerializeField] private PlayerAnimation playerAnimation;
 	private AudioSource attackSound;
 	private List<Enemy> enemyList;
@@ -28,11 +28,11 @@ public class AttackPlayer : MonoBehaviour
 		enemyList[0].Die();
 		enemyList.RemoveAt(0);
 		canAttack = false;
-		Invoke(nameof(AttackReady), cooldown);
 		// play animation
 		playerAnimation.OnAttack();
 		// play sound
 		attackSound.Play();
+		Invoke(nameof(AttackReady), cooldown/Time.timeScale);
 	}
 
 
