@@ -12,7 +12,6 @@ public class WaveManager: MonoBehaviour {
 	private List<EnemySpawn> currentWave;
 	private int enemyIndex;
 	private bool waitForNextWave;
-	private const float RefreshRate = 1.5f;
 
 	private void Start() {
 		waveIndex = 0;
