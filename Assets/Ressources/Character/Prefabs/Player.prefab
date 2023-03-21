@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa369f2b2123b3e4184e8f0d25d341eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 1
+  cooldown: 0.75
   playerAnimation: {fileID: 6845165366455690415}
 --- !u!1 &141635327803910887
 GameObject:
